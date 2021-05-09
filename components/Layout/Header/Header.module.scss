@@ -3,12 +3,12 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 80px;
+  height: 6.2rem;
   border-bottom: .1rem solid #dde0ea;
 }
 
 .logo_container {
-  font-size: 20px;
+  font-size: 1.6rem;
   font-weight: 900;
   color: #24283b;
 }
@@ -30,19 +30,20 @@
     list-style: none;
 
     li + li {
-      margin-left: 50px;
+      margin-left: 4rem;
     }
 
     li {
-      font-size: 16px;
+      font-size: 1.4rem;
       color: #24283b;
     }
 
-    .square_button {
-      padding: 6px 20px 5px 19px;
+    .round_link {
+      padding: 1.2rem 2.8rem 1.1rem;
+      border-radius: 2rem;
+      background-color: #3f4261;
+      font-size: 1.4rem;
       color: #ffffff;
-      border-radius: 5px;
-      background-color: #8748ff;
     }
   }
 }

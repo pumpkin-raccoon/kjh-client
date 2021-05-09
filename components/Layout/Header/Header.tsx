@@ -7,7 +7,7 @@ const Header = () => {
       <div className={styles.contents}>
         <div className={styles.logo_container}>
           <Link href='/'>
-            <a>Traffickr</a>
+            <a>traffickr</a>
           </Link>
         </div>
 
@@ -23,9 +23,11 @@ const Header = () => {
                 <a>로그인</a>
               </Link>
             </li>
-            <li className={styles.square_button}>
+            <li>
               <Link href='/signup'>
-                <a>시작하기</a>
+                <a className={styles.round_link}>
+                  지금 시작하기
+                </a>
               </Link>
             </li>
           </ul>

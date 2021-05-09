@@ -4,9 +4,9 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.contents}>
-        <h2 className={styles.title}>
-          Do what you love
-        </h2>
+        <p className={styles.copyright}>
+          Copyright 2021 traffickr. All rights reserved
+        </p>
       </div>
     </footer>
   )
