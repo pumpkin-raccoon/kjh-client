@@ -10,6 +10,9 @@ jobs:
       - checkout
       - node/install-packages
       - run:
+          name: Install serverless
+          command: npm i -G serverless
+      - run:
           name: Deploy
           command: serverless
 
