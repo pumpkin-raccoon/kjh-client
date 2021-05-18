@@ -11,7 +11,7 @@ jobs:
       - node/install-packages
       - run:
           name: Install serverless
-          command: sudo npm install -g serverless
+          command: npm install -g serverless
       - run:
           name: Deploy
           command: serverless
