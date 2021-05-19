@@ -1,9 +1,7 @@
-import SignUpContainer from "../containers/SignUp/SignUpContainer"
+import SignUpContainer from "containers/SignUp/SignUpContainer"
 
 const SignUpPage = () => {
-  return (
-    <SignUpContainer />
-  )
+  return <SignUpContainer />
 }
 
 export default SignUpPage

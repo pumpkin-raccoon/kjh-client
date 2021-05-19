@@ -1,12 +1,16 @@
-import styles from './Header.module.scss'
-import Link from 'next/link'
+import styles from "./Header.module.scss"
+import Link from "next/link"
+import { useRecoilState } from "recoil"
+import { popupState } from "states/popup"
 
 const Header = () => {
+  const [popup, setPopup] = useRecoilState(popupState)
+
   return (
     <header className={styles.header}>
       <div className={styles.contents}>
         <div className={styles.logo_container}>
-          <Link href='/'>
+          <Link href="/">
             <a>traffickr</a>
           </Link>
         </div>
@@ -14,21 +18,22 @@ const Header = () => {
         <nav className={styles.navigation}>
           <ul>
             <li>
-              <Link href='/#about'>
+              <Link href="/#about">
                 <a>서비스 소개</a>
               </Link>
             </li>
             <li>
-              <Link href='/signin'>
-                <a>로그인</a>
-              </Link>
+              <button onClick={() => setPopup({ ...popup, ...{ openedPopups: ["signIn"] } })}>
+                <p>로그인</p>
+              </button>
             </li>
             <li>
-              <Link href='/signup'>
-                <a className={styles.round_link}>
-                  지금 시작하기
-                </a>
-              </Link>
+              <button
+                className={styles.round_link}
+                onClick={() => setPopup({ ...popup, ...{ openedPopups: ["signUp"] } })}
+              >
+                <p>지금 시작하기</p>
+              </button>
             </li>
           </ul>
         </nav>
