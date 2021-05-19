@@ -1,0 +1,32 @@
+.text_input {
+  width: 100%;
+
+  & > label p {
+    margin-bottom: .4rem;
+    font-size: 1.5rem;
+    color: #a4a7bd;
+  }
+
+  & > input {
+    width: 100%;
+    padding: .4rem 0 .4rem .8rem;
+    font-size: 1.5rem;
+    color: #000000;
+    border: none;
+    border-bottom: solid .1rem #a4a7bd;
+    
+    &::placeholder {
+      color: #a4a7bd;
+    }
+
+    &:focus {
+      border-bottom-color: #363b55;
+    }
+  }
+
+  &:focus-within {
+    & > label p {
+      color: #000000;
+    }
+  }
+}

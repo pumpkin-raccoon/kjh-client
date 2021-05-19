@@ -3,11 +3,7 @@ import { popupState, PopupTitle } from "states/popup"
 import Popup, { PopupProps } from "../Popup"
 import styles from "./BoxPopup.module.scss"
 
-interface BoxPopupProps extends PopupProps {
-  className?: string
-}
-
-const BoxPopup = (props: BoxPopupProps) => {
+const BoxPopup = (props: PopupProps) => {
   const {
     className = "", //
     children,
@@ -29,10 +25,10 @@ const BoxPopup = (props: BoxPopupProps) => {
   }
 
   return (
-    <Popup popupTitle={popupTitle}>
-      <div className={`${styles.box_popup} ${className}`}>
+    <Popup popupTitle={popupTitle} className={className}>
+      <div className={`${styles.box_popup}`}>
         <button onClick={() => closePopup()} className={styles.close_button}>
-          <p>X</p>
+          <img alt="close" src="/images/icons/close-button.png" />
         </button>
         {children}
       </div>
