@@ -1,8 +1,11 @@
 import TextInput from "components/Input/TextInput/TextInput"
 import BoxPopup from "components/Popup/BoxPopup/BoxPopup"
+import { User } from "models/User"
+import { signInAndSetJwtToken } from "public/utils/auth"
 import { validate, ValidationResult } from "public/utils/validate"
 import { useState } from "react"
-import { useSetRecoilState } from "recoil"
+import { useRecoilState } from "recoil"
+import { currentUserState } from "states/currentUser"
 import { popupState } from "states/popup"
 import styles from "./SignInPopup.module.scss"
 
@@ -12,7 +15,8 @@ interface SignInInput {
 }
 
 const SignInPopup = () => {
-  const setPopup = useSetRecoilState(popupState)
+  const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
+  const [popup, setPopup] = useRecoilState(popupState)
   const [errorMessage, setErrorMessage] = useState<string>("")
   const [signInInput, setSignInInput] = useState<SignInInput>({
     email: "",
@@ -26,10 +30,29 @@ const SignInPopup = () => {
     setErrorMessage("")
   }
 
-  const onClickSignIn = () => {
+  const onClickSignIn = async () => {
     const inputValidation = validateInputs()
     if (inputValidation.isValid) {
-      //
+      const signInAndSetTokenResposne = await signInAndSetJwtToken(
+        {
+          email: signInInput.email,
+          password: signInInput.password,
+        },
+        (user: User) => {
+          setCurrentUser({
+            ...currentUser,
+            ...{
+              isLoggedIn: true,
+              currentUser: user,
+            },
+          })
+        },
+      )
+      if (signInAndSetTokenResposne.isSuccess) {
+        setPopup({ ...popup, ...{ openedPopups: [] } })
+      } else {
+        setErrorMessage(signInAndSetTokenResposne.message)
+      }
     } else {
       setErrorMessage(inputValidation.message)
     }
@@ -81,7 +104,7 @@ const SignInPopup = () => {
 
         <p className={styles.to_sign_in}>
           서비스가 처음이신가요?&nbsp;
-          <u onClick={() => setPopup({ openedPopups: ["signUp"] })}>가입하기</u>
+          <u onClick={() => setPopup({ ...popup, ...{ openedPopups: ["signUp"] } })}>가입하기</u>
         </p>
       </div>
     </BoxPopup>

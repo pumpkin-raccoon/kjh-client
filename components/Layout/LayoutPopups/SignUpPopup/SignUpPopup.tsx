@@ -1,8 +1,12 @@
 import TextInput from "components/Input/TextInput/TextInput"
 import BoxPopup from "components/Popup/BoxPopup/BoxPopup"
+import { User } from "models/User"
+import { requestSignUp } from "public/utils/api/auth"
+import { signInAndSetJwtToken } from "public/utils/auth"
 import { validate, ValidationResult } from "public/utils/validate"
 import { useState } from "react"
-import { useSetRecoilState } from "recoil"
+import { useRecoilState } from "recoil"
+import { currentUserState } from "states/currentUser"
 import { popupState } from "states/popup"
 import styles from "./SignUpPopup.module.scss"
 
@@ -14,7 +18,8 @@ interface SignUpInput {
 }
 
 const SignUpPopup = () => {
-  const setPopup = useSetRecoilState(popupState)
+  const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
+  const [popup, setPopup] = useRecoilState(popupState)
   const [errorMessage, setErrorMessage] = useState<string>("")
   const [signUpInput, setSignUpInput] = useState<SignUpInput>({
     name: "",
@@ -30,10 +35,38 @@ const SignUpPopup = () => {
     setErrorMessage("")
   }
 
-  const onClickSignUp = () => {
+  const onClickSignUp = async () => {
     const inputValidation = validateInputs()
     if (inputValidation.isValid) {
-      //
+      const signUpSuccess = await requestSignUp({
+        email: signUpInput.email,
+        name: signUpInput.name,
+        password: signUpInput.password,
+      })
+      if (signUpSuccess) {
+        const signInAndSetTokenResposne = await signInAndSetJwtToken(
+          {
+            email: signUpInput.email,
+            password: signUpInput.password,
+          },
+          (user: User) => {
+            setCurrentUser({
+              ...currentUser,
+              ...{
+                isLoggedIn: true,
+                currentUser: user,
+              },
+            })
+          },
+        )
+        if (signInAndSetTokenResposne.isSuccess) {
+          setPopup({ ...popup, ...{ openedPopups: [] } })
+        } else {
+          setErrorMessage(signInAndSetTokenResposne.message)
+        }
+      } else {
+        setErrorMessage("회원가입에 오류가 발생했습니다.")
+      }
     } else {
       setErrorMessage(inputValidation.message)
     }
@@ -105,7 +138,7 @@ const SignUpPopup = () => {
 
         <p className={styles.to_sign_in}>
           이미 회원이신가요?&nbsp;
-          <u onClick={() => setPopup({ openedPopups: ["signIn"] })}>로그인하기</u>
+          <u onClick={() => setPopup({ ...popup, ...{ openedPopups: ["signIn"] } })}>로그인하기</u>
         </p>
       </div>
     </BoxPopup>

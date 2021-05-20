@@ -8,6 +8,7 @@ module.exports = {
     "eslint:recommended", //
     "plugin:react/recommended",
     "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -20,5 +21,7 @@ module.exports = {
   plugins: ["react", "@typescript-eslint"],
   rules: {
     "react/react-in-jsx-scope": 0, // 'off'
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
   },
 }
