@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BoxPopup matches snapshot 1`] = `
+<div>
+  <div
+    class="popup "
+  >
+    <div>
+      <div
+        class="box_popup"
+      >
+        <button
+          class="close_button"
+        >
+          <img
+            alt="close"
+            src="/images/icons/close-button.png"
+          />
+        </button>
+        <div />
+      </div>
+    </div>
+  </div>
+</div>
+`;

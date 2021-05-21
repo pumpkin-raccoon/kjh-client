@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer matches snapshot 1`] = `
+<div>
+  <footer
+    class="footer"
+  >
+    <div
+      class="contents"
+    >
+      <p
+        class="copyright"
+      >
+        Copyright 2021 traffickr. All rights reserved
+      </p>
+    </div>
+  </footer>
+</div>
+`;
