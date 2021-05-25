@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "test-coverage": "jest --coverage"
+    "test-coverage": "jest --coverage",
+    "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx",
+    "lint-fix": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix"
   },
   "dependencies": {
     "@types/react": "^17.0.5",
@@ -28,11 +30,8 @@
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "eslint": "^7.26.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "husky": "^6.0.0",
-    "identity-obj-proxy": "^3.0.0",
-    "prettier": "^2.3.0"
+    "identity-obj-proxy": "^3.0.0"
   }
 }

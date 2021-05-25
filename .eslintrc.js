@@ -5,9 +5,8 @@ module.exports = {
     node: true,
   },
   extends: [
-    "eslint:recommended", //
+    "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
   ],
   parser: "@typescript-eslint/parser",
@@ -18,10 +17,15 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: [ "react", "@typescript-eslint" ],
   rules: {
-    "react/react-in-jsx-scope": 0, // 'off'
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"],
+    // Disabled Rules
+    "react/react-in-jsx-scope": 0,
+    "no-unused-vars": "off", // off 하지 않으면 interface에서 에러 발생 - typescript rules로 해결
+    // Enabled rules
+    "@typescript-eslint/no-unused-vars": [ "error" ], // 그냥 rule은 off해서 typescript rule 사용
+    "react/jsx-curly-spacing": [ "error", "always" ], // 태그 속성의 중괄호 spacing
+    "object-curly-spacing": [ "error", "always" ], // object spacing
+    "array-bracket-spacing": [ "error", "always" ], // 배열 spacing
   },
 }
