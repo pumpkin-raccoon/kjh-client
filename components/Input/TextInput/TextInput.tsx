@@ -1,5 +1,5 @@
-import { ChangeEvent } from "react"
-import styles from "./TextInput.module.scss"
+import { ChangeEvent } from 'react'
+import styles from './TextInput.module.scss'
 
 const TextInput = (props: {
   className?: string
@@ -13,24 +13,24 @@ const TextInput = (props: {
     value,
     setValue,
     placeholder,
-    className = "",
+    className = '',
   } = props
 
   return (
-    <div className={`${styles.text_input} ${className}`}>
+    <div className={ `${styles.text_input} ${className}` }>
       {labelText && (
-        <label htmlFor={`${labelText}_input`}>
+        <label htmlFor={ `${labelText}_input` }>
           <p>{labelText}</p>
         </label>
       )}
 
       <input
-        id={labelText ? `${labelText}_input` : undefined}
-        value={value}
-        onChange={(event: ChangeEvent<HTMLInputElement>) => {
+        id={ labelText ? `${labelText}_input` : undefined }
+        value={ value }
+        onChange={ (event: ChangeEvent<HTMLInputElement>) => {
           setValue(event.target.value)
-        }}
-        placeholder={placeholder}
+        } }
+        placeholder={ placeholder }
       />
     </div>
   )

@@ -1,16 +1,16 @@
-import { useRecoilState } from "recoil"
-import { popupState, PopupTitle } from "states/popup"
-import Popup, { PopupProps } from "../Popup"
-import styles from "./BoxPopup.module.scss"
+import { useRecoilState } from 'recoil'
+import { popupState, PopupTitle } from 'states/popup'
+import Popup, { PopupProps } from '../Popup'
+import styles from './BoxPopup.module.scss'
 
 const BoxPopup = (props: PopupProps) => {
   const {
-    className = "", //
+    className = '', //
     children,
     popupTitle,
   } = props
 
-  const [popup, setPopup] = useRecoilState(popupState)
+  const [ popup, setPopup ] = useRecoilState(popupState)
 
   const closePopup = () => {
     const targetOpenedPopups = popup.openedPopups.filter((title: PopupTitle) => {
@@ -25,9 +25,9 @@ const BoxPopup = (props: PopupProps) => {
   }
 
   return (
-    <Popup popupTitle={popupTitle} className={className}>
-      <div className={`${styles.box_popup}`}>
-        <button onClick={() => closePopup()} className={styles.close_button}>
+    <Popup popupTitle={ popupTitle } className={ className }>
+      <div className={ `${styles.box_popup}` }>
+        <button onClick={ () => closePopup() } className={ styles.close_button }>
           <img alt="close" src="/images/icons/close-button.png" />
         </button>
         {children}

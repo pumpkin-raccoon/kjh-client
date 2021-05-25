@@ -1,6 +1,6 @@
-import { User } from "models/User"
-import { requestCurrentUser, requestSignIn } from "./api/auth"
-import { setTokenInCookie } from "./cookie"
+import { User } from 'models/User'
+import { requestCurrentUser, requestSignIn } from './api/auth'
+import { setTokenInCookie } from './cookie'
 
 export const signInAndSetJwtToken = async (
   signInInput: {
@@ -23,18 +23,18 @@ export const signInAndSetJwtToken = async (
       if (callback) callback(currentUser)
       return {
         isSuccess: true,
-        message: "",
+        message: '',
       }
     } else {
       return {
         isSuccess: true,
-        message: "현재 유저정보를 불러오는데 오류가 발생했습니다.",
+        message: '현재 유저정보를 불러오는데 오류가 발생했습니다.',
       }
     }
   } else {
     return {
       isSuccess: false,
-      message: "로그인에 실패했습니다. 정보를 다시 확인해 주세요.",
+      message: '로그인에 실패했습니다. 정보를 다시 확인해 주세요.',
     }
   }
 }

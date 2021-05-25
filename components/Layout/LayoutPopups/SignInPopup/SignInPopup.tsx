@@ -1,13 +1,13 @@
-import TextInput from "components/Input/TextInput/TextInput"
-import BoxPopup from "components/Popup/BoxPopup/BoxPopup"
-import { User } from "models/User"
-import { signInAndSetJwtToken } from "public/utils/auth"
-import { validate, ValidationResult } from "public/utils/validate"
-import { useState } from "react"
-import { useRecoilState } from "recoil"
-import { currentUserState } from "states/currentUser"
-import { popupState } from "states/popup"
-import styles from "./SignInPopup.module.scss"
+import TextInput from 'components/Input/TextInput/TextInput'
+import BoxPopup from 'components/Popup/BoxPopup/BoxPopup'
+import { User } from 'models/User'
+import { signInAndSetJwtToken } from 'public/utils/auth'
+import { validate, ValidationResult } from 'public/utils/validate'
+import { useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { currentUserState } from 'states/currentUser'
+import { popupState } from 'states/popup'
+import styles from './SignInPopup.module.scss'
 
 interface SignInInput {
   email: string
@@ -15,19 +15,19 @@ interface SignInInput {
 }
 
 const SignInPopup = () => {
-  const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
-  const [popup, setPopup] = useRecoilState(popupState)
-  const [errorMessage, setErrorMessage] = useState<string>("")
-  const [signInInput, setSignInInput] = useState<SignInInput>({
-    email: "",
-    password: "",
+  const [ currentUser, setCurrentUser ] = useRecoilState(currentUserState)
+  const [ popup, setPopup ] = useRecoilState(popupState)
+  const [ errorMessage, setErrorMessage ] = useState<string>('')
+  const [ signInInput, setSignInInput ] = useState<SignInInput>({
+    email: '',
+    password: '',
   })
 
   const setSignInInputByKey = (key: keyof SignInInput, value: SignInInput[keyof SignInInput]) => {
     const newInput = { ...signInInput }
     newInput[key] = value
     setSignInInput(newInput)
-    setErrorMessage("")
+    setErrorMessage('')
   }
 
   const onClickSignIn = async () => {
@@ -63,48 +63,48 @@ const SignInPopup = () => {
     if (!email || !password) {
       return {
         isValid: false,
-        message: "비어있는 값이 있습니다.",
+        message: '비어있는 값이 있습니다.',
       }
     }
-    const emailValidation = validate("email", email)
+    const emailValidation = validate('email', email)
     if (!emailValidation.isValid) {
       return emailValidation
     }
     return {
       isValid: true,
-      message: "",
+      message: '',
     }
   }
 
   return (
-    <BoxPopup popupTitle="signIn" className={styles.popup}>
-      <div className={styles.contents}>
-        <h2 className={styles.title}>로그인</h2>
-        <div className={styles.form}>
+    <BoxPopup popupTitle="signIn" className={ styles.popup }>
+      <div className={ styles.contents }>
+        <h2 className={ styles.title }>로그인</h2>
+        <div className={ styles.form }>
           <TextInput
-            className={styles.input_with_label}
-            value={signInInput.email}
-            setValue={(value: string) => setSignInInputByKey("email", value)}
+            className={ styles.input_with_label }
+            value={ signInInput.email }
+            setValue={ (value: string) => setSignInInputByKey('email', value) }
             labelText="이메일"
             placeholder="example@traffickr.com"
           />
           <TextInput
-            className={styles.input_with_label}
-            value={signInInput.password}
-            setValue={(value: string) => setSignInInputByKey("password", value)}
+            className={ styles.input_with_label }
+            value={ signInInput.password }
+            setValue={ (value: string) => setSignInInputByKey('password', value) }
             labelText="비밀번호"
             placeholder="비밀번호"
           />
-          <p className={styles.error_message}>{errorMessage}</p>
+          <p className={ styles.error_message }>{errorMessage}</p>
         </div>
 
-        <button className={styles.button} onClick={() => onClickSignIn()}>
+        <button className={ styles.button } onClick={ () => onClickSignIn() }>
           <p>시작하기</p>
         </button>
 
-        <p className={styles.to_sign_in}>
+        <p className={ styles.to_sign_in }>
           서비스가 처음이신가요?&nbsp;
-          <u onClick={() => setPopup({ ...popup, ...{ openedPopups: ["signUp"] } })}>가입하기</u>
+          <u onClick={ () => setPopup({ ...popup, ...{ openedPopups: [ 'signUp' ] } }) }>가입하기</u>
         </p>
       </div>
     </BoxPopup>

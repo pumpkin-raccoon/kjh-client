@@ -1,9 +1,9 @@
-import { render } from "@testing-library/react"
-import { RecoilRoot } from "recoil"
-import BoxPopup from "./BoxPopup"
+import { render } from '@testing-library/react'
+import { RecoilRoot } from 'recoil'
+import BoxPopup from './BoxPopup'
 
-describe("BoxPopup", () => {
-  it("matches snapshot", () => {
+describe('BoxPopup', () => {
+  it('matches snapshot', () => {
     const utils = render(
       <RecoilRoot>
         <BoxPopup popupTitle="">

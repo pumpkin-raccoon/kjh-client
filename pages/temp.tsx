@@ -1,13 +1,13 @@
-import { ChangeEvent } from "react"
-import { atom, selector, useRecoilState, useRecoilValue } from "recoil"
+import { ChangeEvent } from 'react'
+import { atom, selector, useRecoilState, useRecoilValue } from 'recoil'
 
 const textState = atom({
-  key: "textState", // unique ID (with respect to other atoms/selectors)
-  default: "", // default value (aka initial value)
+  key: 'textState', // unique ID (with respect to other atoms/selectors)
+  default: '', // default value (aka initial value)
 })
 
 const charCountState = selector({
-  key: "charCountState", // unique ID (with respect to other atoms/selectors)
+  key: 'charCountState', // unique ID (with respect to other atoms/selectors)
   get: ({ get }) => {
     const text = get(textState)
 
@@ -16,7 +16,7 @@ const charCountState = selector({
 })
 
 const TestPage = () => {
-  const [text, setText] = useRecoilState(textState)
+  const [ text, setText ] = useRecoilState(textState)
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value)
@@ -26,19 +26,19 @@ const TestPage = () => {
 
   return (
     <div
-      style={{
-        padding: "3rem",
-      }}
+      style={ {
+        padding: '3rem',
+      } }
     >
       <h2
-        style={{
-          fontSize: "2rem",
-          marginBottom: "1rem",
-        }}
+        style={ {
+          fontSize: '2rem',
+          marginBottom: '1rem',
+        } }
       >
         DEMO
       </h2>
-      <input type="text" value={text} onChange={onChange} />
+      <input type="text" value={ text } onChange={ onChange } />
       <br />
       Echo: {text}
       <br />

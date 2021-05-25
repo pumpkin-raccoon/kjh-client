@@ -1,7 +1,7 @@
-import { getDefaultUser, User } from "models/User"
+import { getDefaultUser, User } from 'models/User'
 // import { requestCurrentUser } from "public/utils/api/auth"
 // import { COOKIE_NAME, getCookie } from "public/utils/cookie"
-import { atom, RecoilState } from "recoil"
+import { atom, RecoilState } from 'recoil'
 
 export interface CurrentUserState {
   isLoggedIn: boolean
@@ -9,7 +9,7 @@ export interface CurrentUserState {
 }
 
 export const currentUserState: RecoilState<CurrentUserState> = atom({
-  key: "currentUserStateKey",
+  key: 'currentUserStateKey',
   default: {
     isLoggedIn: false as boolean,
     currentUser: getDefaultUser() as User,

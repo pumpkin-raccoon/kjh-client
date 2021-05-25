@@ -1,5 +1,5 @@
-import { User } from "models/User"
-import { requestApi } from "."
+import { User } from 'models/User'
+import { requestApi } from '.'
 
 export const requestSignUp = async (signUpInput: {
   email: string
@@ -7,8 +7,8 @@ export const requestSignUp = async (signUpInput: {
   password: string
 }): Promise<boolean> => {
   const response = await requestApi({
-    method: "post",
-    backUrl: "/auth/register",
+    method: 'post',
+    backUrl: '/auth/register',
     options: {
       data: JSON.stringify(signUpInput),
     },
@@ -22,8 +22,8 @@ export const requestSignIn = async (signInInput: {
   password: string
 }): Promise<string | null> => {
   const response = await requestApi({
-    method: "post",
-    backUrl: "/auth/signin",
+    method: 'post',
+    backUrl: '/auth/signin',
     options: {
       data: JSON.stringify(signInInput),
     },
@@ -34,8 +34,8 @@ export const requestSignIn = async (signInInput: {
 
 export const requestCurrentUser = async (token?: string): Promise<User | null> => {
   const response = await requestApi({
-    method: "get",
-    backUrl: "/auth/currentUser",
+    method: 'get',
+    backUrl: '/auth/currentUser',
     options: {
       accessTokenOrCtx: token,
     },

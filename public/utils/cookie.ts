@@ -1,4 +1,4 @@
-import { Cookies } from "react-cookie"
+import { Cookies } from 'react-cookie'
 
 const cookies = new Cookies()
 
@@ -12,12 +12,12 @@ export const getCookie = (name: string) => {
 
 export const setTokenInCookie = (token: string) => {
   setCookie(COOKIE_NAME.token, token, {
-    path: "/",
+    path: '/',
     secure: true,
-    sameSite: "none",
+    sameSite: 'none',
   })
 }
 
 export const COOKIE_NAME = {
-  token: "TAT",
+  token: 'TAT',
 }

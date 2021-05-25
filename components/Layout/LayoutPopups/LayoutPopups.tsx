@@ -1,5 +1,5 @@
-import SignInPopup from "./SignInPopup/SignInPopup"
-import SignUpPopup from "./SignUpPopup/SignUpPopup"
+import SignInPopup from './SignInPopup/SignInPopup'
+import SignUpPopup from './SignUpPopup/SignUpPopup'
 
 const LayoutPopups = () => {
   return (

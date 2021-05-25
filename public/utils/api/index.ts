@@ -1,8 +1,8 @@
-import axios from "axios"
-import { COOKIE_NAME, getCookie } from "../cookie"
+import axios from 'axios'
+import { COOKIE_NAME, getCookie } from '../cookie'
 
 export const requestApi = async (params: {
-  method: "post" | "put" | "delete" | "get"
+  method: 'post' | 'put' | 'delete' | 'get'
   backUrl: string
   options?: {
     data?: any
@@ -10,32 +10,32 @@ export const requestApi = async (params: {
   }
 }) => {
   const { method, backUrl, options } = params
-  let accessToken: string | undefined = ""
+  let accessToken: string | undefined = ''
   switch (typeof options?.accessTokenOrCtx) {
-    case "string":
+    case 'string':
       accessToken = options?.accessTokenOrCtx
       break
-    case "undefined":
+    case 'undefined':
       accessToken = getCookie(COOKIE_NAME.token)
       break
-    case "object":
+    case 'object':
       accessToken = options?.accessTokenOrCtx.isServer
         ? options?.accessTokenOrCtx?.req?.headers?.cookie
-        : ""
+        : ''
   }
-  console.log("accessToken ?? : ", accessToken)
+  console.log('accessToken ?? : ', accessToken)
   try {
     return await axios({
       method: method,
-      url: process.env.apiServer + backUrl,
+      url: process.env.apiServer! + backUrl,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
       },
       data: options?.data,
     })
   } catch (err) {
-    console.log("Request Error: ", params, err)
+    console.log('Request Error: ', params, err)
     return {
       error: err,
       data: null,
