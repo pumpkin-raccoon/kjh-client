@@ -24,13 +24,21 @@ export const requestApi = async (params: {
         : ""
   }
   console.log("accessToken ?? : ", accessToken)
-  return await axios({
-    method: method,
-    url: process.env.apiServer + backUrl,
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
-    },
-    data: options?.data,
-  })
+  try {
+    return await axios({
+      method: method,
+      url: process.env.apiServer + backUrl,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: options?.data,
+    })
+  } catch (err) {
+    console.log("Request Error: ", params, err)
+    return {
+      error: err,
+      data: null,
+    }
+  }
 }

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
+    "test": "jest",
+    "test-c": "jest --coverage"
   },
   "dependencies": {
     "@types/react": "^17.0.5",

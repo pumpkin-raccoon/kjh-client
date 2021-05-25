@@ -34,7 +34,7 @@ export const signInAndSetJwtToken = async (
   } else {
     return {
       isSuccess: false,
-      message: "로그인 처리에 오류가 발생했습니다.",
+      message: "로그인에 실패했습니다. 정보를 다시 확인해 주세요.",
     }
   }
 }
