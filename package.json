@@ -14,8 +14,7 @@
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
-      "eslint",
-      "echo 'hi'"
+      "eslint --fix"
     ]
   },
   "dependencies": {
