@@ -9,11 +9,13 @@
     "test": "jest",
     "test-coverage": "jest --coverage",
     "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx",
-    "lint-fix": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix"
+    "lint-fix": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
+    "lint-staged": "lint-staged"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
-      "eslint"
+      "eslint",
+      "echo hi"
     ]
   },
   "dependencies": {
