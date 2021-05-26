@@ -11,6 +11,11 @@
     "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx",
     "lint-fix": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix"
   },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "eslint"
+    ]
+  },
   "dependencies": {
     "@types/react": "^17.0.5",
     "axios": "^0.21.1",
@@ -33,6 +38,7 @@
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-react": "^7.23.2",
     "husky": "^6.0.0",
-    "identity-obj-proxy": "^3.0.0"
+    "identity-obj-proxy": "^3.0.0",
+    "lint-staged": "^11.0.0"
   }
 }
