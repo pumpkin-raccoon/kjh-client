@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardContainer matches snapshot 1`] = `
+<div>
+  <div>
+    <div
+      class="profile_background"
+    />
+    <div
+      class="profile_contents"
+    >
+      <div
+        class="profile_image"
+      >
+        이미지
+      </div>
+      <h2
+        class="name"
+      >
+        이재하
+      </h2>
+      <p
+        class="description"
+      >
+        매일매일 성장하는 호박너구리
+      </p>
+    </div>
+    <ul
+      class="tabs"
+    >
+      <li>
+        <button
+          class="selected"
+        >
+          내 설문
+        </button>
+      </li>
+      <li>
+        <button
+          class=""
+        >
+          내 답변
+        </button>
+      </li>
+    </ul>
+    <div
+      class="contents"
+    >
+      콘텐츠
+    </div>
+  </div>
+</div>
+`;
