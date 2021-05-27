@@ -1,0 +1,64 @@
+.profile_background {
+  width: 100%;
+  height: 15rem;
+  background-color: #c8bff4;
+}
+
+.profile_contents {
+  padding-bottom: 1.5rem;
+  margin-top: -5.5rem;
+  text-align: center;
+  border-bottom: .1rem solid #edeff4;
+}
+
+.profile_image {
+  width: 11rem;
+  height: 11rem;
+  padding: 1.8rem 1.8rem 0;
+  margin: 0 auto 1.6rem;
+  border-radius: .7rem;
+  background-color: #dadce8;
+}
+
+.name {
+  margin-bottom: 1.1rem;
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+  color: #363b55;
+}
+
+.description {
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #c2c4cc;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  border-bottom: .1rem solid #edeff4;
+
+  button {
+    padding: 1.1rem 0 1.2rem;
+    margin: 0 3rem;
+    font-size: 1.4rem;
+    color: #363b55;
+    transition: .4s;
+    border-bottom: .2rem solid transparent;
+
+    &.selected {
+      border-bottom: .2rem solid #8564e4;
+      color: #8564e4;
+    }
+  }
+}
+
+.contents {
+  min-height: 50rem;
+  background-color: #f5f6f9;
+}
