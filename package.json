@@ -8,7 +8,7 @@
     "start": "next start",
     "test": "jest",
     "test-coverage": "jest --coverage",
-    "test-codecov": "jest && codecov",
+    "test-codecov": "jest --coverage && codecov",
     "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx",
     "lint-fix": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
     "lint-staged": "lint-staged"
