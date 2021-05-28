@@ -38,7 +38,6 @@
     "@typescript-eslint/parser": "^4.23.0",
     "codecov": "^3.8.2",
     "eslint": "^7.26.0",
-    "eslint-config-standard": "^16.0.3",
     "eslint-plugin-react": "^7.23.2",
     "husky": "^6.0.0",
     "identity-obj-proxy": "^3.0.0",
