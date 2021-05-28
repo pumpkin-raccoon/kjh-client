@@ -1,0 +1,25 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.1
+
+jobs:
+  build-and-deploy:  
+    docker:
+      - image: cimg/node:15.1
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Install serverless
+          command: sudo npm install -g serverless
+      - run:
+          name: f
+          command: echo $(pwd)
+      - run:
+          name: Deploy
+          command: sudo serverless
+
+workflows:
+  deploy: 
+    jobs:
+      - build-and-deploy
