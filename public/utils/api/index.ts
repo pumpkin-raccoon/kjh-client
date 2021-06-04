@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { API } from 'public/reference/API'
 import { COOKIE_NAME, getCookie } from '../cookie'
 
 export const requestApi = async (params: {
@@ -23,11 +24,10 @@ export const requestApi = async (params: {
         ? options?.accessTokenOrCtx?.req?.headers?.cookie
         : ''
   }
-  console.log('accessToken ?? : ', accessToken)
   try {
     return await axios({
       method: method,
-      url: process.env.apiServer! + backUrl,
+      url: (process.env.apiServer || API.SERVER) + backUrl,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,

@@ -29,7 +29,7 @@ const SignUpPopup = () => {
   })
 
   const setSignUpInputByKey = (key: keyof SignUpInput, value: SignUpInput[keyof SignUpInput]) => {
-    const newInput = { ...signUpInput }
+    const newInput: SignUpInput = { ...signUpInput }
     newInput[key] = value
     setSignUpInput(newInput)
     setErrorMessage('')
@@ -59,6 +59,7 @@ const SignUpPopup = () => {
             })
           },
         )
+        console.log('??? : ', signInAndSetTokenResposne)
         if (signInAndSetTokenResposne.isSuccess) {
           setPopup({ ...popup, ...{ openedPopups: [] } })
         } else {
@@ -138,7 +139,9 @@ const SignUpPopup = () => {
 
         <p className={ styles.to_sign_in }>
           이미 회원이신가요?&nbsp;
-          <u onClick={ () => setPopup({ ...popup, ...{ openedPopups: [ 'signIn' ] } }) }>로그인하기</u>
+          <u onClick={ () => setPopup({ ...popup, ...{ openedPopups: [ 'signIn' ] } }) }>
+            로그인하기
+          </u>
         </p>
       </div>
     </BoxPopup>

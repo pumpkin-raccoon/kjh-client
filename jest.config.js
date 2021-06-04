@@ -1,5 +1,13 @@
 module.exports = {
-  testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
+  testPathIgnorePatterns: [
+    "<rootDir>/.next/", 
+    "<rootDir>/node_modules/",
+  ],
+  coveragePathIgnorePatterns: [
+    "<rootDir>/.next/", 
+    "<rootDir>/node_modules/",
+    '<rootDir>/public/utils/api',
+  ],
   setupFilesAfterEnv: ["<rootDir>/tests/setupTests.js"],
   snapshotResolver: "<rootDir>/tests/snapshotResolver.js",
   moduleNameMapper: {

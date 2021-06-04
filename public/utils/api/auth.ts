@@ -1,7 +1,7 @@
 import { User } from 'models/User'
 import { requestApi } from '.'
 
-export const requestSignUp = async (signUpInput: {
+export const requestSignUp = async(signUpInput: {
   email: string
   name: string
   password: string
@@ -17,7 +17,7 @@ export const requestSignUp = async (signUpInput: {
   return isSucess
 }
 
-export const requestSignIn = async (signInInput: {
+export const requestSignIn = async(signInInput: {
   email: string
   password: string
 }): Promise<string | null> => {
@@ -32,7 +32,7 @@ export const requestSignIn = async (signInInput: {
   return jwt
 }
 
-export const requestCurrentUser = async (token?: string): Promise<User | null> => {
+export const requestCurrentUser = async(token?: string): Promise<User | null> => {
   const response = await requestApi({
     method: 'get',
     backUrl: '/auth/currentUser',

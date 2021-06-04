@@ -20,7 +20,7 @@ const TextInput = (props: {
     <div className={ `${styles.text_input} ${className}` }>
       {labelText && (
         <label htmlFor={ `${labelText}_input` }>
-          <p>{labelText}</p>
+          {labelText}
         </label>
       )}
 
