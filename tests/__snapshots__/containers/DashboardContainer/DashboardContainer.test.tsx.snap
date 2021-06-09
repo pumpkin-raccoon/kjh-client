@@ -46,7 +46,36 @@ exports[`DashboardContainer matches snapshot 1`] = `
     <div
       class="contents"
     >
-      콘텐츠
+      <div
+        class="DashboardMySurvey"
+      >
+        <div
+          class="contents"
+        >
+          <button>
+            <div
+              class="SurveyBox survey_box"
+            >
+              <h3
+                class="title"
+              >
+                예시 제목
+              </h3>
+              <div
+                class="info_row"
+              >
+                <p
+                  class="item_length"
+                >
+                  총 
+                  1
+                  문항
+                </p>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
