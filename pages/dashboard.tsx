@@ -1,5 +1,5 @@
 import Layout from 'components/Layout/Layout'
-import DashboardContainer from 'containers/Dashboard/DashboardContainer'
+import DashboardContainer from 'containers/DashboardContainer/DashboardContainer'
 
 const DashboardPage = () => {
   return (

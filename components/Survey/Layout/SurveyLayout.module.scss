@@ -1,0 +1,50 @@
+.SurveyLayout {
+  background-color: #f5f6f9;
+  min-height: 100vh;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 6rem;
+  box-shadow: 0 .2rem .4rem 0 rgba(152, 168, 190, 0.1);
+  background-color: #ffffff;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #5d5f6b;
+}
+
+.side_button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.left_button {
+  left: 2.7rem;
+}
+
+.right_button {
+  right: 1.1rem;
+}
+
+.square_button {
+  padding: .6rem 1.7rem .7rem;
+  border-radius: .3rem;
+  background-color: #8564e4;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.arrow_button {
+  img {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}

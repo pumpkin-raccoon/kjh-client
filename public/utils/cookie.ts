@@ -11,11 +11,7 @@ export const getCookie = (name: string) => {
 }
 
 export const setTokenInCookie = (token: string) => {
-  setCookie(COOKIE_NAME.token, token, {
-    path: '/',
-    secure: true,
-    sameSite: 'none',
-  })
+  setCookie(COOKIE_NAME.token, token)
 }
 
 export const COOKIE_NAME = {

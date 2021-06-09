@@ -5,7 +5,7 @@ import { atom, RecoilState } from 'recoil'
 
 export interface CurrentUserState {
   isLoggedIn: boolean
-  currentUser: User | any
+  currentUser: User
 }
 
 export const currentUserState: RecoilState<CurrentUserState> = atom({

@@ -1,5 +1,8 @@
+import { getDefaultSurvey } from 'models/Survey'
+import { getDefaultSurveyItem } from 'models/SurveyItem'
 import { useState } from 'react'
 import styles from './DashboardContainer.module.scss'
+import DashboardMySurvey from './MySurvey/DashboardMySurvey'
 
 type DashboardTab = 'mySurvey' | 'myResponse'
 
@@ -41,7 +44,13 @@ const DashboardContainer = () => {
       </ul>
 
       <div className={ styles.contents }>
-        콘텐츠
+        {currentTab === 'mySurvey'
+          ? <DashboardMySurvey mySurveys={ [ { ...getDefaultSurvey(), ...{
+            title: '예시 제목',
+            items: [ getDefaultSurveyItem() ]
+          } } ] }/>
+          : <div></div>
+        }
       </div>
     </div>
   )

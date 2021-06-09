@@ -1,6 +1,7 @@
 import TextInput from 'components/Input/TextInput/TextInput'
 import BoxPopup from 'components/Popup/BoxPopup/BoxPopup'
 import { User } from 'models/User'
+import { useRouter } from 'next/dist/client/router'
 import { requestSignUp } from 'public/utils/api/auth'
 import { signInAndSetJwtToken } from 'public/utils/auth'
 import { validate, ValidationResult } from 'public/utils/validate'
@@ -18,6 +19,7 @@ interface SignUpInput {
 }
 
 const SignUpPopup = () => {
+  const router = useRouter()
   const [ currentUser, setCurrentUser ] = useRecoilState(currentUserState)
   const [ popup, setPopup ] = useRecoilState(popupState)
   const [ errorMessage, setErrorMessage ] = useState<string>('')
@@ -57,9 +59,9 @@ const SignUpPopup = () => {
                 currentUser: user,
               },
             })
+            router.push('/dashboard')
           },
         )
-        console.log('??? : ', signInAndSetTokenResposne)
         if (signInAndSetTokenResposne.isSuccess) {
           setPopup({ ...popup, ...{ openedPopups: [] } })
         } else {
