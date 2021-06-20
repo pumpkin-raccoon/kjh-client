@@ -5,7 +5,7 @@ import { useRouter } from 'next/dist/client/router'
 import { signInAndSetJwtToken } from 'public/utils/auth'
 import { validate, ValidationResult } from 'public/utils/validate'
 import { useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { currentUserState } from 'states/currentUser'
 import { popupState } from 'states/popup'
 import styles from './SignInPopup.module.scss'
@@ -17,7 +17,7 @@ interface SignInInput {
 
 const SignInPopup = () => {
   const router = useRouter()
-  const [ currentUser, setCurrentUser ] = useRecoilState(currentUserState)
+  const setCurrentUser = useSetRecoilState(currentUserState)
   const [ popup, setPopup ] = useRecoilState(popupState)
   const [ errorMessage, setErrorMessage ] = useState<string>('')
   const [ signInInput, setSignInInput ] = useState<SignInInput>({
@@ -41,13 +41,7 @@ const SignInPopup = () => {
           password: signInInput.password,
         },
         (user: User) => {
-          setCurrentUser({
-            ...currentUser,
-            ...{
-              isLoggedIn: true,
-              currentUser: user,
-            },
-          })
+          setCurrentUser(user)
           router.push('/dashboard')
         },
       )

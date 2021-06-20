@@ -1,13 +1,14 @@
 import styles from './Header.module.scss'
 import Link from 'next/link'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { popupState } from 'states/popup'
-import { currentUserState } from 'states/currentUser'
+import { currentUserState, isUserLoggedInState } from 'states/currentUser'
 import { getDefaultUser } from 'models/User'
 
 const Header = () => {
   const [ popup, setPopup ] = useRecoilState(popupState)
-  const [ currentUser, setCurrentUser ] = useRecoilState(currentUserState)
+  const setCurrentUser = useSetRecoilState(currentUserState)
+  const isUserLoggedIn = useRecoilValue(isUserLoggedInState)
 
   return (
     <header className={ styles.header }>
@@ -19,15 +20,12 @@ const Header = () => {
         </div>
 
         <nav className={ styles.navigation }>
-          {currentUser.isLoggedIn ? (
+          {isUserLoggedIn ? (
             <ul>
               <li>
                 <button
                   onClick={ () =>
-                    setCurrentUser({
-                      ...currentUser,
-                      ...{ isLoggedIn: false, currentUser: getDefaultUser() },
-                    })
+                    setCurrentUser(getDefaultUser())
                   }
                 >
                   <p>로그아웃</p>

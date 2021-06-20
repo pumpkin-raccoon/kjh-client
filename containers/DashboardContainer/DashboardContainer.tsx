@@ -1,6 +1,9 @@
-import { getDefaultSurvey } from 'models/Survey'
-import { getDefaultSurveyItem } from 'models/SurveyItem'
-import { useState } from 'react'
+import { Survey } from 'models/Survey'
+import { User } from 'models/User'
+import { requestUserSurveys } from 'public/utils/api/survey'
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { currentUserState } from 'states/currentUser'
 import styles from './DashboardContainer.module.scss'
 import DashboardMySurvey from './MySurvey/DashboardMySurvey'
 
@@ -8,19 +11,36 @@ type DashboardTab = 'mySurvey' | 'myResponse'
 
 const DashboardContainer = () => {
   const [ currentTab, setCurrentTab ] = useState<DashboardTab>('mySurvey')
+  const [ currentUser, setCurrentUser ] = useRecoilState<User>(currentUserState)
+  const [ userSurveys, setUserSurveys ] = useState<Survey[]>([])
+  console.log('temp : ', setCurrentUser)
+
+  useEffect(() => {
+    setUserSurveysByApi()
+  }, [])
+
+  const setUserSurveysByApi = async() => {
+    const responseSurveys = await requestUserSurveys(currentUser.id)
+    if (responseSurveys) {
+      setUserSurveys(responseSurveys)
+    }
+  }
 
   return (
     <div>
       <div className={ styles.profile_background }/>
       <div className={ styles.profile_contents }>
         <div className={ styles.profile_image }>
-          이미지
+          <img 
+            alt='profile image'
+            src={ currentUser.profile.photoUrl }
+          />
         </div>
         <h2 className={ styles.name }>
-          이재하
+          {currentUser.name}
         </h2>
         <p className={ styles.description }>
-          매일매일 성장하는 호박너구리
+          {currentUser.profile.greetings}
         </p>
       </div>
 
@@ -45,10 +65,7 @@ const DashboardContainer = () => {
 
       <div className={ styles.contents }>
         {currentTab === 'mySurvey'
-          ? <DashboardMySurvey mySurveys={ [ { ...getDefaultSurvey(), ...{
-            title: '예시 제목',
-            items: [ getDefaultSurveyItem() ]
-          } } ] }/>
+          ? <DashboardMySurvey mySurveys={ userSurveys }/>
           : <div></div>
         }
       </div>

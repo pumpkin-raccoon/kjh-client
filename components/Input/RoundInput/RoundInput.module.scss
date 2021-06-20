@@ -1,0 +1,41 @@
+.RoundInput {
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: .5rem;
+  background-color: #f9fafd;
+  border: .1rem solid transparent;
+
+  &.with_label {
+    padding-top: .8rem;
+  }
+
+  &.focus_color_default {
+    &:focus-within {
+      border: solid .1rem #c2c4cc;
+    }
+  }
+
+  &.focus_color_red {
+    &:focus-within {
+      border: solid .1rem red;
+    }
+  }
+
+  p {
+    margin-bottom: .8rem;
+    font-size: 1.2rem;
+    color: #9695ab;
+  }
+
+  input {
+    width: 100%;
+    font-size: 1.4rem;
+    border: none;
+    color: #5d5f6b;
+    background-color: transparent;
+
+    &::placeholder {
+      color: #c2c4cc;
+    }
+  }
+}

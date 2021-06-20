@@ -13,6 +13,26 @@
     width: 100%;
     text-align: initial;
   }
+
+  button + button {
+    margin-top: 2rem;
+  }
+}
+
+.survey_box_create {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 96px;
+  border-radius: .9rem;
+  border: dashed .1rem #d4d8de;
+  background-color: #f0f2f7;
+
+  p {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #d4d8de;
+  }
 }
 
 .empty_contents {

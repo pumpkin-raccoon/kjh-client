@@ -22,11 +22,16 @@ const DashboardMySurvey = (props: {
               onClick={ () => router.push(`/survey/${survey.code}`) }
             >
               <SurveyBox
-                className={ styles.survey_box }
                 survey={ survey }
               />
             </button>
           ))}
+          <button
+            className={ styles.survey_box_create }
+            onClick={ () => router.push('/survey/create') }
+          >
+            <p>+ 설문 만들기</p>
+          </button>
         </div>
         :
         <div className={ styles.empty_contents }>

@@ -20,3 +20,11 @@ export const requestCreateSurvey = async(surveyPayload: SurveyPayload): Promise<
   })
   return response?.data || undefined
 }
+
+export const requestUserSurveys = async(userId: string): Promise<Survey[] | undefined> => {
+  const response = await requestApi({
+    method: 'get',
+    backUrl: `/users/${userId}/surveys`
+  })
+  return response?.data || undefined
+}

@@ -16,10 +16,7 @@ const Auth = () => {
     if (token) {
       const user = await requestCurrentUser(token)
       if (user) {
-        setCurrentUser({ 
-          currentUser: user,
-          isLoggedIn: true
-        })
+        setCurrentUser(user)
       }
     }
   }

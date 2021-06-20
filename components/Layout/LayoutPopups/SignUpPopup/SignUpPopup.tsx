@@ -6,7 +6,7 @@ import { requestSignUp } from 'public/utils/api/auth'
 import { signInAndSetJwtToken } from 'public/utils/auth'
 import { validate, ValidationResult } from 'public/utils/validate'
 import { useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { currentUserState } from 'states/currentUser'
 import { popupState } from 'states/popup'
 import styles from './SignUpPopup.module.scss'
@@ -20,7 +20,7 @@ interface SignUpInput {
 
 const SignUpPopup = () => {
   const router = useRouter()
-  const [ currentUser, setCurrentUser ] = useRecoilState(currentUserState)
+  const setCurrentUser = useSetRecoilState(currentUserState)
   const [ popup, setPopup ] = useRecoilState(popupState)
   const [ errorMessage, setErrorMessage ] = useState<string>('')
   const [ signUpInput, setSignUpInput ] = useState<SignUpInput>({
@@ -52,13 +52,7 @@ const SignUpPopup = () => {
             password: signUpInput.password,
           },
           (user: User) => {
-            setCurrentUser({
-              ...currentUser,
-              ...{
-                isLoggedIn: true,
-                currentUser: user,
-              },
-            })
+            setCurrentUser(user)
             router.push('/dashboard')
           },
         )

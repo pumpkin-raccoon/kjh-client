@@ -1,27 +1,15 @@
 import { getDefaultUser, User } from 'models/User'
-// import { requestCurrentUser } from "public/utils/api/auth"
-// import { COOKIE_NAME, getCookie } from "public/utils/cookie"
-import { atom, RecoilState } from 'recoil'
+import { atom, RecoilState, RecoilValueReadOnly, selector } from 'recoil'
 
-export interface CurrentUserState {
-  isLoggedIn: boolean
-  currentUser: User
-}
-
-export const currentUserState: RecoilState<CurrentUserState> = atom({
+export const currentUserState: RecoilState<User> = atom({
   key: 'currentUserStateKey',
-  default: {
-    isLoggedIn: false as boolean,
-    currentUser: getDefaultUser() as User,
-    // currentUser: async () => {
-    //   const token = getCookie(COOKIE_NAME.token)
-    //   if (!token) return
-    //   const user = await requestCurrentUser(token)
-    //   if (user) {
-    //     return user
-    //   } else {
-    //     return getDefaultUser()
-    //   }
-    // },
-  },
+  default: getDefaultUser() as User
+})
+
+export const isUserLoggedInState: RecoilValueReadOnly<boolean> = selector({
+  key: 'isUserLoggedInState',
+  get: ({ get }) => {
+    const user = get(currentUserState)
+    return Boolean(user.id)
+  }
 })
