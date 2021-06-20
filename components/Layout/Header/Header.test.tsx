@@ -30,7 +30,7 @@ describe('Header', () => {
   it('has logout button when user logged in', () => {
     const { getByText } = render(
       <RecoilRoot initializeState={ ({ set }: MutableSnapshot) => {
-        set(currentUserState, getDefaultUser())
+        set(currentUserState, { ...getDefaultUser(), ...{ id: 'test' } })
       } }>
         <Header />
       </RecoilRoot>

@@ -12,18 +12,17 @@ exports[`DashboardContainer matches snapshot 1`] = `
       <div
         class="profile_image"
       >
-        이미지
+        <img
+          alt="profile image"
+          src=""
+        />
       </div>
       <h2
         class="name"
-      >
-        이재하
-      </h2>
+      />
       <p
         class="description"
-      >
-        매일매일 성장하는 호박너구리
-      </p>
+      />
     </div>
     <ul
       class="tabs"
@@ -50,29 +49,15 @@ exports[`DashboardContainer matches snapshot 1`] = `
         class="DashboardMySurvey"
       >
         <div
-          class="contents"
+          class="empty_contents"
         >
+          <p>
+            작성한 설문이 없습니다.
+          </p>
           <button>
-            <div
-              class="SurveyBox survey_box"
-            >
-              <h3
-                class="title"
-              >
-                예시 제목
-              </h3>
-              <div
-                class="info_row"
-              >
-                <p
-                  class="item_length"
-                >
-                  총 
-                  1
-                  문항
-                </p>
-              </div>
-            </div>
+            <p>
+              설문 만들기
+            </p>
           </button>
         </div>
       </div>
