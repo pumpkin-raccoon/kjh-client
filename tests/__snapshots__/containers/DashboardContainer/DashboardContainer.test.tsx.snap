@@ -14,7 +14,7 @@ exports[`DashboardContainer matches snapshot 1`] = `
       >
         <img
           alt="profile image"
-          src=""
+          src="/images/icons/profile.png"
         />
       </div>
       <h2
