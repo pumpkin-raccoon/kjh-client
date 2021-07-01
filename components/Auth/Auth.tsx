@@ -1,5 +1,5 @@
-import { requestCurrentUser } from 'public/utils/api/auth'
-import { COOKIE_NAME, getCookie } from 'public/utils/cookie'
+import { requestCurrentUser } from 'utils/api/auth'
+import { COOKIE_NAME, getCookie } from 'utils/cookie'
 import { useEffect } from 'react'
 import { useSetRecoilState } from 'recoil'
 import { currentUserState } from 'states/currentUser'

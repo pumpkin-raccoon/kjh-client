@@ -1,6 +1,6 @@
 import { getDefaultUser } from 'models/User'
 import { rest } from 'msw'
-import { API } from 'public/reference/API'
+import { API } from 'reference/API'
 
 export const authHandlers = [
   rest.post(API.SERVER + '/auth/register', (req, res, ctx) => {

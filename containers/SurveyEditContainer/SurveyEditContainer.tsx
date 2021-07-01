@@ -1,6 +1,7 @@
 import RoundInput from 'components/Input/RoundInput/RoundInput'
 import SurveyLayout from 'components/Survey/Layout/SurveyLayout'
 import { useRouter } from 'next/dist/client/router'
+import { DEFAULT_PROFILE_PATH } from 'reference/profile'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from 'states/currentUser'
@@ -36,7 +37,7 @@ const SurveyEditContainer = () => {
       <div className={ styles.SurveyEditContainer }>
         <div className={ styles.box }>
           <img 
-            className={ styles.profile_image }
+            className={ styles.profile_image || DEFAULT_PROFILE_PATH }
             alt='profile image'
             src={ currentUser.profile.photoUrl }
           />

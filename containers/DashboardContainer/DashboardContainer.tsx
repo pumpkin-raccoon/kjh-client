@@ -1,6 +1,7 @@
 import { Survey } from 'models/Survey'
 import { User } from 'models/User'
-import { requestUserSurveys } from 'public/utils/api/survey'
+import { DEFAULT_PROFILE_PATH } from 'reference/profile'
+import { requestUserSurveys } from 'utils/api/survey'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { currentUserState } from 'states/currentUser'
@@ -33,7 +34,7 @@ const DashboardContainer = () => {
         <div className={ styles.profile_image }>
           <img 
             alt='profile image'
-            src={ currentUser.profile.photoUrl }
+            src={ currentUser.profile.photoUrl || DEFAULT_PROFILE_PATH }
           />
         </div>
         <h2 className={ styles.name }>

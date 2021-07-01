@@ -4,7 +4,7 @@ import { PopupState, popupState } from 'states/popup'
 import SignUpPopup from './SignUpPopup'
 import { setupServer } from 'msw/node'
 import { rest } from 'msw'
-import { API } from 'public/reference/API'
+import { API } from 'reference/API'
 import { authHandlers } from 'tests/__mocks__/auth'
 
 describe('SignUpPopup', () => {

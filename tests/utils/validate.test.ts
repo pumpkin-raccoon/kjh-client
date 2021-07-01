@@ -1,4 +1,4 @@
-import { validate } from 'public/utils/validate'
+import { validate } from 'utils/validate'
 
 describe('utils validate', () => {
   it('validate email correctly when it\'s wrong', () => {

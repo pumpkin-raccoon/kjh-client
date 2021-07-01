@@ -6,7 +6,7 @@ import { isUserLoggedInState } from 'states/currentUser'
 const DashboardPage = () => {
   const isUserLoggedIn = useRecoilValue(isUserLoggedInState)
 
-  if (isUserLoggedIn) {
+  if (isUserLoggedIn || process.env.NODE_ENV === 'development') {
     return (
       <Layout>
         <DashboardContainer />

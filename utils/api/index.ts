@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { API } from 'public/reference/API'
+import { API } from 'reference/API'
 import { COOKIE_NAME, getCookie } from '../cookie'
 
 export const requestApi = async (params: {

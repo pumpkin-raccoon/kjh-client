@@ -5,7 +5,7 @@ import { isUserLoggedInState } from 'states/currentUser'
 const SurveyCreatePage = () => {
   const isUserLoggedIn = useRecoilValue(isUserLoggedInState)
 
-  if (isUserLoggedIn) {
+  if (isUserLoggedIn || process.env.NODE_ENV === 'development') {
     return (
       <SurveyEditContainer />
     )

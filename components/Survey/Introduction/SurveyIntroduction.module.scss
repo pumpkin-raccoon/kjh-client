@@ -1,0 +1,41 @@
+.SurveyIntroduction {
+  padding: 4rem 2.5rem 4rem;
+  border-radius: .5rem;
+  box-shadow: 0 .2rem .9rem 0 rgba(154, 170, 193, 0.2);
+  border: solid .1rem #edeff4;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.image {
+  display: inline-block;
+  width: 5.5rem;
+  height: 5.5rem;
+  margin-bottom: 1.2rem;
+  border-radius: .7rem;
+  background-color: #dadce8;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  color: #5d5f6b;
+}
+
+.description {
+  margin-bottom: 1.7rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #c2c4cc;
+}
+
+.introduction {
+  padding: 1.5rem;
+  border-radius: .5rem;
+  color: #333236;
+  background-color: #f9fafd;
+  line-height: 1.5;
+  text-align: left;
+  word-break: keep-all;
+}
