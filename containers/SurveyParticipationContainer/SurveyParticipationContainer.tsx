@@ -3,6 +3,8 @@ import { User } from 'models/User'
 import { useState } from 'react'
 import SurveyParticipationContainerIntroduction from './Introduction/SurveyParticipationContainerIntroduction'
 import styles from './SurveyParticipationContainer.module.scss'
+import SurveyParticipationContainerReply from './Reply/SurveyParticipationContainerReply'
+import SurveyParticipationContainerComplete from './Complete/SurveyParticipationContainerComplete'
 
 type SurveyParticipationStep = 'Introduction' | 'Participation' | 'Completion'
 
@@ -33,6 +35,14 @@ const SurveyParticipationContainer = (props: {
             survey={ survey }
             moveToNextStep={ moveToNextStep }
           />
+        }
+        {step === 'Participation' &&
+          <SurveyParticipationContainerReply 
+            moveToNextStep={ moveToNextStep }
+          />
+        }
+        {step === 'Completion' &&
+          <SurveyParticipationContainerComplete />
         }
       </div>
     </div>
