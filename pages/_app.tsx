@@ -18,11 +18,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default MyApp
 
 // TODO for Front
-// 1. survey respond page
+// DONE > 1. survey respond page
 // 2. adjust desgin when new field layout is added
-// 3. add api to survey creation page
+// DONE > 3. add api to survey creation page
+// 3(1). 생성완료 후 코드 보여주는 팝업 및 이동
+// 4(-1). 서베이 접근하기
 // 4. add api to survey response page
 // 5. dashboard after design
+// 기타. 로그인 새로고침하면 왜 안되지
 
 // TODO for Design
 // 1. survey respond page: light description color

@@ -69,10 +69,8 @@ export default SurveyParticipationPage
 
 export const getServerSideProps = async(ctx: NextPageContext) => {
   const surveyCode = ctx.query.code
-  const ctxToken = ctx.req?.headers?.cookie || undefined
-  console.log('surveycode : ', surveyCode)
-  const survey = await requestSurveyByCode(surveyCode?.toString() || '', ctxToken)
-  const user = await requestCurrentUser(ctxToken)
+  const survey = await requestSurveyByCode(surveyCode?.toString() || '', ctx)
+  const user = await requestCurrentUser(ctx)
   return {
     props: {
       user: user || null,

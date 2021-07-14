@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { API } from 'reference/API'
 import { COOKIE_NAME, getCookie } from '../cookie'
+import nextCookie from 'next-cookies'
 
 export const requestApi = async (params: {
   method: 'post' | 'put' | 'delete' | 'get'
@@ -20,11 +21,11 @@ export const requestApi = async (params: {
       accessToken = getCookie(COOKIE_NAME.token)
       break
     case 'object':
-      accessToken = options?.accessTokenOrCtx.isServer
-        ? options?.accessTokenOrCtx?.req?.headers?.cookie
-        : ''
+      accessToken = nextCookie(options?.accessTokenOrCtx)[COOKIE_NAME.token]
   }
   try {
+    console.log('TOKEN:: ', accessToken)
+    console.log('URL:: ', (process.env.apiServer || API.SERVER) + backUrl)
     return await axios({
       method: method,
       url: (process.env.apiServer || API.SERVER) + backUrl,

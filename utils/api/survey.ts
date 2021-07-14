@@ -30,6 +30,8 @@ export const requestUserSurveys = async(userId: string): Promise<Survey[] | unde
 }
 
 export const requestSurveyByCode = async(code: string, token?: string | object): Promise<Survey | undefined> => {
+  console.log('code : ',code)
+  console.log('token : ', typeof token)
   const response = await requestApi({
     method: 'get',
     backUrl: `/guest/surveys/${code}`,
