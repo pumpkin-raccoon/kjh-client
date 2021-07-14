@@ -18,3 +18,8 @@ export enum QuestionType {
   RED = 'RED',
   CUSTOM = 'CUSTOM'
 }
+
+export interface QuestionPayload {
+  type: QuestionType
+  content: string
+}

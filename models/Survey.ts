@@ -1,4 +1,4 @@
-import { SurveyItem } from './SurveyItem'
+import { SurveyItem, SurveyItemPayload } from './SurveyItem'
 
 export interface Survey {
   id: string
@@ -7,8 +7,10 @@ export interface Survey {
   content: string
   items: SurveyItem[]
   code: string
-  createdAt: string
-  updatedAt: string
+  createdAt?: string
+  updatedAt?: string
+  validFrom?: string
+  validUntil?: string
 }
 
 export const getDefaultSurvey = (): Survey => {
@@ -20,14 +22,16 @@ export const getDefaultSurvey = (): Survey => {
     items: [],
     code: '',
     createdAt: '',
-    updatedAt: ''
+    updatedAt: '',
+    validFrom: '',
+    validUntil: ''
   }
 }
 
 export interface SurveyPayload {
   title: string
   content: string
-  surveyItemTemplateIds: string[]
+  surveyItems: SurveyItemPayload[]
   validFrom?: string
   validUntil?: string
 }

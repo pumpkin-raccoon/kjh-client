@@ -3,7 +3,7 @@ import { User } from 'models/User'
 import { DEFAULT_PROFILE_PATH } from 'reference/profile'
 import { requestUserSurveys } from 'utils/api/survey'
 import { useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { currentUserState } from 'states/currentUser'
 import styles from './DashboardContainer.module.scss'
 import DashboardMySurvey from './MySurvey/DashboardMySurvey'
@@ -12,13 +12,14 @@ type DashboardTab = 'mySurvey' | 'myResponse'
 
 const DashboardContainer = () => {
   const [ currentTab, setCurrentTab ] = useState<DashboardTab>('mySurvey')
-  const [ currentUser, setCurrentUser ] = useRecoilState<User>(currentUserState)
+  const currentUser = useRecoilValue<User>(currentUserState)
   const [ userSurveys, setUserSurveys ] = useState<Survey[]>([])
-  console.log('temp : ', setCurrentUser)
 
   useEffect(() => {
-    setUserSurveysByApi()
-  }, [])
+    if (currentUser.id) {
+      setUserSurveysByApi()
+    }
+  }, [ currentUser.id ])
 
   const setUserSurveysByApi = async() => {
     const responseSurveys = await requestUserSurveys(currentUser.id)

@@ -32,12 +32,12 @@ export const requestSignIn = async(signInInput: {
   return jwt
 }
 
-export const requestCurrentUser = async(token?: string): Promise<User | null> => {
+export const requestCurrentUser = async(token?: string | object): Promise<User | null> => {
   const response = await requestApi({
     method: 'get',
     backUrl: '/auth/currentUser',
     options: {
-      accessTokenOrCtx: token,
+      accessTokenOrCtx: token
     },
   })
   const currentUser = response?.data || null

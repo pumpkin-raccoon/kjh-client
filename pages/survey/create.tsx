@@ -1,4 +1,4 @@
-import SurveyEditContainer from 'containers/SurveyEditContainer/SurveyEditContainer'
+import SurveyCreateContainer from 'containers/SurveyCreateContainer/SurveyCreateContainer'
 import { useRecoilValue } from 'recoil'
 import { isUserLoggedInState } from 'states/currentUser'
 
@@ -7,7 +7,7 @@ const SurveyCreatePage = () => {
 
   if (isUserLoggedIn || process.env.NODE_ENV === 'development') {
     return (
-      <SurveyEditContainer />
+      <SurveyCreateContainer />
     )
   } else {
     return (

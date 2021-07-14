@@ -24,7 +24,10 @@ const SurveyLayout = (props: {
     <div className={ styles.SurveyLayout }>
       <header className={ styles.header }>
         {leftButton &&
-          <button className={ `${styles.side_button} ${styles.left_button} ${styles.arrow_button}` }>
+          <button 
+            className={ `${styles.side_button} ${styles.left_button} ${styles.arrow_button}` }
+            onClick={ leftButton.onClick }
+          >
             {leftButton.type === 'arrow' &&
               <img 
                 alt='move back' 
@@ -39,7 +42,10 @@ const SurveyLayout = (props: {
         </h1>
 
         {rightButton &&
-          <button className={ `${styles.side_button} ${styles.right_button} ${styles.square_button}` }>
+          <button 
+            className={ `${styles.side_button} ${styles.right_button} ${styles.square_button}` }
+            onClick={ rightButton.onClick }
+          >
             {typeof rightButton.element === 'string'
               ? <p>{rightButton.element}</p>
               : rightButton.element

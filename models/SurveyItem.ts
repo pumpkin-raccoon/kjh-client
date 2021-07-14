@@ -1,4 +1,4 @@
-import { Question } from './Question'
+import { Question, QuestionPayload } from './Question'
 
 export interface SurveyItem {
   id: string
@@ -20,4 +20,10 @@ export interface SurveyItemTemplate {
   id: string
   title: string
   content: string
+}
+
+export interface SurveyItemPayload {
+  title: string
+  content: string
+  questions: QuestionPayload[]
 }

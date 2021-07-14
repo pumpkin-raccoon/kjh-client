@@ -35,7 +35,7 @@ export const requestApi = async (params: {
       data: options?.data,
     })
   } catch (err) {
-    console.log('Request Error: ', params, err)
+    console.log('Request Error: ', backUrl)
     return {
       error: err,
       data: null,

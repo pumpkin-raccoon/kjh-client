@@ -13,9 +13,9 @@ export const requestSurveyTemplates = async(): Promise<SurveyItemTemplate[] | un
 export const requestCreateSurvey = async(surveyPayload: SurveyPayload): Promise<Survey | undefined> => {
   const response = await requestApi({
     method: 'post',
-    backUrl: '/surveys',
+    backUrl: '/v2/surveys',
     options: {
-      data: JSON.stringify(surveyPayload)
+      data: surveyPayload
     }
   })
   return response?.data || undefined
@@ -25,6 +25,17 @@ export const requestUserSurveys = async(userId: string): Promise<Survey[] | unde
   const response = await requestApi({
     method: 'get',
     backUrl: `/users/${userId}/surveys`
+  })
+  return response?.data || undefined
+}
+
+export const requestSurveyByCode = async(code: string, token?: string | object): Promise<Survey | undefined> => {
+  const response = await requestApi({
+    method: 'get',
+    backUrl: `/guest/surveys/${code}`,
+    options: {
+      accessTokenOrCtx: token
+    }
   })
   return response?.data || undefined
 }
