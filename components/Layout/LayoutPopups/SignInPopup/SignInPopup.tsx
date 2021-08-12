@@ -9,6 +9,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import { currentUserState } from 'states/currentUser'
 import { popupState } from 'states/popup'
 import styles from './SignInPopup.module.scss'
+import { useToast } from '@chakra-ui/react'
 
 interface SignInInput {
   email: string
@@ -16,10 +17,10 @@ interface SignInInput {
 }
 
 const SignInPopup = () => {
+  const toast = useToast()
   const router = useRouter()
   const setCurrentUser = useSetRecoilState(currentUserState)
   const [ popup, setPopup ] = useRecoilState(popupState)
-  const [ errorMessage, setErrorMessage ] = useState<string>('')
   const [ signInInput, setSignInInput ] = useState<SignInInput>({
     email: '',
     password: '',
@@ -27,9 +28,8 @@ const SignInPopup = () => {
 
   const setSignInInputByKey = (key: keyof SignInInput, value: SignInInput[keyof SignInInput]) => {
     const newInput = { ...signInInput }
-    newInput[key] = value
+    newInput[key] = value.trim()
     setSignInInput(newInput)
-    setErrorMessage('')
   }
 
   const onClickSignIn = async () => {
@@ -47,11 +47,25 @@ const SignInPopup = () => {
       )
       if (signInAndSetTokenResposne.isSuccess) {
         setPopup({ ...popup, ...{ openedPopups: [] } })
+        setSignInInput({
+          email: '',
+          password: ''
+        })
       } else {
-        setErrorMessage(signInAndSetTokenResposne.message)
+        toast({
+          status: 'error',
+          title: signInAndSetTokenResposne.message,
+          position: 'top',
+          isClosable: true
+        })
       }
     } else {
-      setErrorMessage(inputValidation.message)
+      toast({
+        status: 'error',
+        title: inputValidation.message,
+        position: 'top',
+        isClosable: true
+      })
     }
   }
 
@@ -84,6 +98,7 @@ const SignInPopup = () => {
             setValue={ (value: string) => setSignInInputByKey('email', value) }
             labelText="이메일"
             placeholder="example@traffickr.com"
+            pressEnter={ onClickSignIn }
           />
           <TextInput
             className={ styles.input_with_label }
@@ -91,8 +106,9 @@ const SignInPopup = () => {
             setValue={ (value: string) => setSignInInputByKey('password', value) }
             labelText="비밀번호"
             placeholder="비밀번호"
+            type="password"
+            pressEnter={ onClickSignIn }
           />
-          <p className={ styles.error_message }>{errorMessage}</p>
         </div>
 
         <button className={ styles.button } onClick={ () => onClickSignIn() }>

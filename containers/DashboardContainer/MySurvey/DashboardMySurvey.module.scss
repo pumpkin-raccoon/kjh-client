@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 28rem;
+  width: 280px;
   margin: 0 auto;
 }
 
@@ -15,7 +15,7 @@
   }
 
   button + button {
-    margin-top: 2rem;
+    margin-top: 20px;
   }
 }
 
@@ -24,31 +24,31 @@
   align-items: center;
   justify-content: center;
   height: 96px;
-  border-radius: .9rem;
-  border: dashed .1rem #d4d8de;
+  border-radius: 9px;
+  border: dashed 1px #d4d8de;
   background-color: #f0f2f7;
 
   p {
-    font-size: 1.4rem;
+    font-size: 14px;
     font-weight: 500;
     color: #d4d8de;
   }
 }
 
 .empty_contents {
-  padding-top: 4rem;
+  padding-top: 40px;
 
   & > p {
-    margin-bottom: 2rem;
-    font-size: 1.4rem;
+    margin-bottom: 20px;
+    font-size: 14px;
     color: #b5b5b5;
   }
 
   & > button {
-    padding: .6rem 2.8rem .7rem;
-    border-radius: .5rem;
+    padding: 6px 28px 7px;
+    border-radius: 5px;
     background-color: #8564e4;
-    font-size: 1.4rem;
+    font-size: 14px;
     color: #ffffff;
   }
 }

@@ -19,7 +19,7 @@ const DashboardMySurvey = (props: {
           {mySurveys.map((survey: Survey) => (
             <button
               key={ survey.id }
-              onClick={ () => router.push(`/survey/${survey.code}`) }
+              onClick={ () => router.push(`/survey/${survey.code}/edit`) }
             >
               <SurveyBox
                 survey={ survey }

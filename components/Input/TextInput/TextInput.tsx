@@ -7,6 +7,8 @@ const TextInput = (props: {
   value: string
   setValue: (newValue: string) => void
   placeholder?: string
+  type?: string
+  pressEnter?: () => void
 }) => {
   const {
     labelText, //
@@ -14,6 +16,8 @@ const TextInput = (props: {
     setValue,
     placeholder,
     className = '',
+    type,
+    pressEnter
   } = props
 
   return (
@@ -30,7 +34,13 @@ const TextInput = (props: {
         onChange={ (event: ChangeEvent<HTMLInputElement>) => {
           setValue(event.target.value)
         } }
+        onKeyDown={ (event: React.KeyboardEvent<HTMLInputElement>) => {
+          if (event.key === 'Enter') {
+            if (pressEnter) pressEnter()
+          }
+        } }
         placeholder={ placeholder }
+        type={ type }
       />
     </div>
   )

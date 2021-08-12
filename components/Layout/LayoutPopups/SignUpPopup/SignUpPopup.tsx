@@ -10,6 +10,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import { currentUserState } from 'states/currentUser'
 import { popupState } from 'states/popup'
 import styles from './SignUpPopup.module.scss'
+import { useToast } from '@chakra-ui/react'
 
 interface SignUpInput {
   name: string
@@ -19,10 +20,10 @@ interface SignUpInput {
 }
 
 const SignUpPopup = () => {
+  const toast = useToast()
   const router = useRouter()
   const setCurrentUser = useSetRecoilState(currentUserState)
   const [ popup, setPopup ] = useRecoilState(popupState)
-  const [ errorMessage, setErrorMessage ] = useState<string>('')
   const [ signUpInput, setSignUpInput ] = useState<SignUpInput>({
     name: '',
     email: '',
@@ -34,7 +35,6 @@ const SignUpPopup = () => {
     const newInput: SignUpInput = { ...signUpInput }
     newInput[key] = value
     setSignUpInput(newInput)
-    setErrorMessage('')
   }
 
   const onClickSignUp = async () => {
@@ -46,7 +46,7 @@ const SignUpPopup = () => {
         password: signUpInput.password,
       })
       if (signUpSuccess) {
-        const signInAndSetTokenResposne = await signInAndSetJwtToken(
+        const signUpAndSetTokenResposne = await signInAndSetJwtToken(
           {
             email: signUpInput.email,
             password: signUpInput.password,
@@ -56,16 +56,31 @@ const SignUpPopup = () => {
             router.push('/dashboard')
           },
         )
-        if (signInAndSetTokenResposne.isSuccess) {
+        if (signUpAndSetTokenResposne.isSuccess) {
           setPopup({ ...popup, ...{ openedPopups: [] } })
         } else {
-          setErrorMessage(signInAndSetTokenResposne.message)
+          toast({
+            status: 'error',
+            title: signUpAndSetTokenResposne.message,
+            position: 'top',
+            isClosable: true
+          })
         }
       } else {
-        setErrorMessage('회원가입에 오류가 발생했습니다.')
+        toast({
+          status: 'error',
+          title: '회원가입에 오류가 발생했습니다.',
+          position: 'top',
+          isClosable: true
+        })
       }
     } else {
-      setErrorMessage(inputValidation.message)
+      toast({
+        status: 'error',
+        title: inputValidation.message,
+        position: 'top',
+        isClosable: true
+      })
     }
   }
 
@@ -118,6 +133,8 @@ const SignUpPopup = () => {
             setValue={ (value: string) => setSignUpInputByKey('password', value) }
             labelText="비밀번호"
             placeholder="비밀번호"
+            type="password"
+            pressEnter={ onClickSignUp }
           />
           <TextInput
             className={ styles.input_with_label }
@@ -125,8 +142,9 @@ const SignUpPopup = () => {
             setValue={ (value: string) => setSignUpInputByKey('confirmedPassword', value) }
             labelText="비밀번호 확인"
             placeholder="비밀번호 확인"
+            type="password"
+            pressEnter={ onClickSignUp }
           />
-          <p className={ styles.error_message }>{errorMessage}</p>
         </div>
 
         <button className={ styles.button } onClick={ () => onClickSignUp() }>

@@ -6,8 +6,7 @@ export interface PopupState {
 
 export type PopupTitle = '' | 
   'signUp' | 
-  'signIn' |
-  'createdSurvey'
+  'signIn'
 
 export const popupState: RecoilState<PopupState> = atom({
   key: 'popupStateKey',

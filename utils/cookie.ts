@@ -10,6 +10,10 @@ export const getCookie = (name: string) => {
   return cookies.get(name)
 }
 
+export const removeCookie = (name: string) => {
+  cookies.remove(name)
+}
+
 export const setTokenInCookie = (token: string) => {
   setCookie(COOKIE_NAME.token, token)
 }

@@ -1,35 +1,35 @@
 .RoundInput {
   width: 100%;
-  padding: 1.5rem;
-  border-radius: .5rem;
+  padding: 15px;
+  border-radius: 5px;
   background-color: #f9fafd;
-  border: .1rem solid transparent;
+  border: 1px solid transparent;
 
   &.with_label {
-    padding-top: .8rem;
+    padding-top: 8px;
   }
 
   &.focus_color_default {
     &:focus-within {
-      border: solid .1rem #c2c4cc;
+      border: solid 1px #c2c4cc;
     }
   }
 
   &.focus_color_red {
     &:focus-within {
-      border: solid .1rem red;
+      border: solid 1px red;
     }
   }
 
   p {
-    margin-bottom: .8rem;
-    font-size: 1.2rem;
+    margin-bottom: 8px;
+    font-size: 12px;
     color: #9695ab;
   }
 
   input {
     width: 100%;
-    font-size: 1.4rem;
+    font-size: 14px;
     border: none;
     color: #5d5f6b;
     background-color: transparent;

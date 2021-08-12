@@ -4,8 +4,11 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { popupState } from 'states/popup'
 import { currentUserState, isUserLoggedInState } from 'states/currentUser'
 import { getDefaultUser } from 'models/User'
+import { COOKIE_NAME, removeCookie } from 'utils/cookie'
+import { useRouter } from 'next/dist/client/router'
 
 const Header = () => {
+  const router = useRouter()
   const [ popup, setPopup ] = useRecoilState(popupState)
   const setCurrentUser = useSetRecoilState(currentUserState)
   const isUserLoggedIn = useRecoilValue(isUserLoggedInState)
@@ -14,7 +17,7 @@ const Header = () => {
     <header className={ styles.header }>
       <div className={ styles.contents }>
         <div className={ styles.logo_container }>
-          <Link href="/">
+          <Link href={ isUserLoggedIn ? '/dashboard' : '/' }>
             <a>traffickr</a>
           </Link>
         </div>
@@ -24,9 +27,11 @@ const Header = () => {
             <ul>
               <li>
                 <button
-                  onClick={ () =>
+                  onClick={ () => {
+                    removeCookie(COOKIE_NAME.token)
                     setCurrentUser(getDefaultUser())
-                  }
+                    router.push('/')
+                  } }
                 >
                   <p>로그아웃</p>
                 </button>
@@ -35,21 +40,8 @@ const Header = () => {
           ) : (
             <ul>
               <li>
-                <Link href="/#about">
-                  <a>서비스 소개</a>
-                </Link>
-              </li>
-              <li>
                 <button onClick={ () => setPopup({ ...popup, ...{ openedPopups: [ 'signIn' ] } }) }>
                   <p>로그인</p>
-                </button>
-              </li>
-              <li>
-                <button
-                  className={ styles.round_link }
-                  onClick={ () => setPopup({ ...popup, ...{ openedPopups: [ 'signUp' ] } }) }
-                >
-                  <p>지금 시작하기</p>
                 </button>
               </li>
             </ul>

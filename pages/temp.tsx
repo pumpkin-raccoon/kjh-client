@@ -27,13 +27,13 @@ const TestPage = () => {
   return (
     <div
       style={ {
-        padding: '3rem',
+        padding: '30px',
       } }
     >
       <h2
         style={ {
-          fontSize: '2rem',
-          marginBottom: '1rem',
+          fontSize: '20px',
+          marginBottom: '10px',
         } }
       >
         DEMO

@@ -1,46 +1,41 @@
 .contents {
-  width: 37.5rem;
-  padding: 6rem 5.5rem;
+  width: 372px;
+  max-width: 92vw;
+  padding: 40px 55px 50px;
 }
 
 .title {
-  margin-bottom: 3rem;
-  font-size: 3rem;
+  margin-bottom: 30px;
+  font-size: 30px;
   font-weight: 600;
   text-align: center;
   color: #2d3248;
 }
 
 .form {
-  margin-bottom: 1.5rem;
+  margin-bottom: 25px;
 
   .input_with_label + .input_with_label {
-    margin-top: 2rem;
-  }
-
-  .error_message {
-    margin-top: 1.5rem;
-    font-size: 1.4rem;
-    color: #ff8cbf;
+    margin-top: 20px;
   }
 }
 
 .button {
   width: 100%;
-  padding: .8rem 0;
-  border-radius: .5rem;
+  padding: 8px 0;
+  border-radius: 5px;
   background-color: #8564e4;
-  font-size: 1.4rem;
+  font-size: 14px;
   font-weight: 600;
   color: #ffffff;
 }
 
 .to_sign_in {
   position: absolute;
-  bottom: -3.5rem;
+  bottom: -35px;
   left: 0;
   width: 100%;
-  font-size: 1.4rem;
+  font-size: 14px;
   text-align: center;
   color: rgba(255, 255, 255, 0.75);
 
