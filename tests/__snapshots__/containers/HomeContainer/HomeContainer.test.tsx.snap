@@ -4,58 +4,6 @@ exports[`HomeContainer matches snapshot 1`] = `
 <div>
   <div
     class="container"
-  >
-    <div
-      class="banner"
-    >
-      <div
-        class="banner_contents"
-      >
-        <h2
-          class="banner_title"
-        >
-          Find the right
-          <br />
-          way for you.
-        </h2>
-        <p
-          class="banner_description"
-        >
-          a personal, peer evaluation service.
-        </p>
-        <div
-          class="banner_buttons"
-        >
-          <button
-            class="banner_round_button"
-          >
-            <p>
-              지금 시작하기
-            </p>
-          </button>
-          <button
-            class="banner_normal_button"
-          >
-            <p>
-              더 알아보기
-            </p>
-          </button>
-        </div>
-      </div>
-      <div
-        class="banner_image"
-      >
-        <img
-          alt="traffic-light in banner"
-          src="/images/home/traffic-light.png"
-        />
-      </div>
-    </div>
-    <h2
-      class="title"
-    >
-      Hi, this is traffickr
-    </h2>
-  </div>
+  />
 </div>
 `;
