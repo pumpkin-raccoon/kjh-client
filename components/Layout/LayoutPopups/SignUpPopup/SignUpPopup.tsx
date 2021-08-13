@@ -11,6 +11,7 @@ import { currentUserState } from 'states/currentUser'
 import { popupState } from 'states/popup'
 import styles from './SignUpPopup.module.scss'
 import { useToast } from '@chakra-ui/react'
+import { loadingState } from 'states/loading'
 
 interface SignUpInput {
   name: string
@@ -23,6 +24,7 @@ const SignUpPopup = () => {
   const toast = useToast()
   const router = useRouter()
   const setCurrentUser = useSetRecoilState(currentUserState)
+  const setLoading = useSetRecoilState(loadingState)
   const [ popup, setPopup ] = useRecoilState(popupState)
   const [ signUpInput, setSignUpInput ] = useState<SignUpInput>({
     name: '',
@@ -39,45 +41,54 @@ const SignUpPopup = () => {
 
   const onClickSignUp = async () => {
     const inputValidation = validateInputs()
-    if (inputValidation.isValid) {
-      const signUpSuccess = await requestSignUp({
-        email: signUpInput.email,
-        name: signUpInput.name,
-        password: signUpInput.password,
-      })
-      if (signUpSuccess) {
-        const signUpAndSetTokenResposne = await signInAndSetJwtToken(
-          {
-            email: signUpInput.email,
-            password: signUpInput.password,
-          },
-          (user: User) => {
-            setCurrentUser(user)
-            router.push('/dashboard')
-          },
-        )
-        if (signUpAndSetTokenResposne.isSuccess) {
-          setPopup({ ...popup, ...{ openedPopups: [] } })
-        } else {
-          toast({
-            status: 'error',
-            title: signUpAndSetTokenResposne.message,
-            position: 'top',
-            isClosable: true
-          })
-        }
-      } else {
-        toast({
-          status: 'error',
-          title: '회원가입에 오류가 발생했습니다.',
-          position: 'top',
-          isClosable: true
-        })
-      }
-    } else {
+    if (!inputValidation.isValid) {
       toast({
         status: 'error',
         title: inputValidation.message,
+        position: 'top',
+        isClosable: true
+      })
+      return
+    }
+    setLoading({
+      isLoading: true
+    })
+    const signUpSuccess = await requestSignUp({
+      email: signUpInput.email,
+      name: signUpInput.name,
+      password: signUpInput.password,
+    })
+    if (!signUpSuccess) {
+      setLoading({
+        isLoading: false
+      })
+      toast({
+        status: 'error',
+        title: '회원가입에 오류가 발생했습니다.',
+        position: 'top',
+        isClosable: true
+      })
+      return
+    }
+    const signUpAndSetTokenResposne = await signInAndSetJwtToken(
+      {
+        email: signUpInput.email,
+        password: signUpInput.password,
+      },
+      (user: User) => {
+        setCurrentUser(user)
+        router.push('/dashboard')
+      },
+    )
+    setLoading({
+      isLoading: false
+    })
+    if (signUpAndSetTokenResposne.isSuccess) {
+      setPopup({ ...popup, ...{ openedPopups: [] } })
+    } else {
+      toast({
+        status: 'error',
+        title: signUpAndSetTokenResposne.message,
         position: 'top',
         isClosable: true
       })

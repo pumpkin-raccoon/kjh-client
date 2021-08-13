@@ -23,9 +23,9 @@ export const requestApi = async (params: {
     case 'object':
       accessToken = nextCookie(options?.accessTokenOrCtx)[COOKIE_NAME.token]
   }
+  console.log('target url : ', (process.env.apiServer || API.SERVER) + backUrl)
+  console.log('access token : ', accessToken)
   try {
-    console.log('TOKEN:: ', accessToken)
-    console.log('URL:: ', (process.env.apiServer || API.SERVER) + backUrl)
     return await axios({
       method: method,
       url: (process.env.apiServer || API.SERVER) + backUrl,
@@ -36,7 +36,6 @@ export const requestApi = async (params: {
       data: options?.data,
     })
   } catch (err) {
-    console.log('Request Error: ', backUrl)
     return {
       error: err,
       data: null,

@@ -8,6 +8,7 @@ const RoundInput = (props: {
   placeholder?: string | number
   focusColor?: 'default' | 'red'
   labelText?: string
+  isTextarea?: boolean
 }) => {
   const {
     className,
@@ -15,7 +16,8 @@ const RoundInput = (props: {
     setValue,
     placeholder,
     focusColor = 'default',
-    labelText
+    labelText,
+    isTextarea
   } = props
   
   return (
@@ -30,12 +32,23 @@ const RoundInput = (props: {
           <p>{labelText}</p>
         </label>
       }
-      <input 
-        id={ labelText ? `${labelText}_input` : undefined }
-        value={ value }
-        onChange={ (event) => setValue(event.target.value) }
-        placeholder={ placeholder?.toString() }
-      />
+
+      {isTextarea
+        ?
+        <textarea
+          id={ labelText ? `${labelText}_input` : undefined }
+          value={ value }
+          onChange={ (event) => setValue(event.target.value) }
+          placeholder={ placeholder?.toString() }
+        />
+        :
+        <input 
+          id={ labelText ? `${labelText}_input` : undefined }
+          value={ value }
+          onChange={ (event) => setValue(event.target.value) }
+          placeholder={ placeholder?.toString() }
+        />
+      }
     </div>
   )
 }

@@ -27,10 +27,12 @@
     color: #9695ab;
   }
 
-  input {
+  input, textarea {
     width: 100%;
+    height: 100%;
     font-size: 14px;
     border: none;
+    outline: none;
     color: #5d5f6b;
     background-color: transparent;
 

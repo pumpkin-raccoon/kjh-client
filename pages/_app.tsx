@@ -3,11 +3,13 @@ import '../styles/globals.css'
 import { RecoilRoot } from 'recoil'
 import { ChakraProvider } from '@chakra-ui/react'
 import Auth from 'components/Auth/Auth'
+import Loading from 'components/Loading/Loading'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <Auth />
+      <Loading />
       <ChakraProvider>
         <Component { ...pageProps } />
       </ChakraProvider>

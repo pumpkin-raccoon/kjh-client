@@ -1,9 +1,9 @@
-import styles from './HomeContainer.module.scss'
+import HomeContainerHeader from './Header/HomeContainerHeader'
 
 const HomeContainer = () => {
   return (
-    <div className={ styles.container }>
-      
+    <div>
+      <HomeContainerHeader />
     </div>
   )
 }

@@ -10,6 +10,7 @@ import { currentUserState } from 'states/currentUser'
 import { popupState } from 'states/popup'
 import styles from './SignInPopup.module.scss'
 import { useToast } from '@chakra-ui/react'
+import { loadingState } from 'states/loading'
 
 interface SignInInput {
   email: string
@@ -19,6 +20,7 @@ interface SignInInput {
 const SignInPopup = () => {
   const toast = useToast()
   const router = useRouter()
+  const setLoading = useSetRecoilState(loadingState)
   const setCurrentUser = useSetRecoilState(currentUserState)
   const [ popup, setPopup ] = useRecoilState(popupState)
   const [ signInInput, setSignInInput ] = useState<SignInInput>({
@@ -34,39 +36,45 @@ const SignInPopup = () => {
 
   const onClickSignIn = async () => {
     const inputValidation = validateInputs()
-    if (inputValidation.isValid) {
-      const signInAndSetTokenResposne = await signInAndSetJwtToken(
-        {
-          email: signInInput.email,
-          password: signInInput.password,
-        },
-        (user: User) => {
-          setCurrentUser(user)
-          router.push('/dashboard')
-        },
-      )
-      if (signInAndSetTokenResposne.isSuccess) {
-        setPopup({ ...popup, ...{ openedPopups: [] } })
-        setSignInInput({
-          email: '',
-          password: ''
-        })
-      } else {
-        toast({
-          status: 'error',
-          title: signInAndSetTokenResposne.message,
-          position: 'top',
-          isClosable: true
-        })
-      }
-    } else {
+    if (!inputValidation.isValid) {
       toast({
         status: 'error',
         title: inputValidation.message,
         position: 'top',
         isClosable: true
       })
+      return
     }
+    setLoading({
+      isLoading: true
+    })
+    const signInAndSetTokenResposne = await signInAndSetJwtToken(
+      {
+        email: signInInput.email,
+        password: signInInput.password,
+      },
+      (user: User) => {
+        setCurrentUser(user)
+        router.push('/dashboard')
+      },
+    )
+    setLoading({
+      isLoading: false
+    })
+    if (!signInAndSetTokenResposne.isSuccess) {
+      toast({
+        status: 'error',
+        title: signInAndSetTokenResposne.message,
+        position: 'top',
+        isClosable: true
+      })
+      return
+    }
+    setPopup({ ...popup, ...{ openedPopups: [] } })
+    setSignInInput({
+      email: '',
+      password: ''
+    })
   }
 
   const validateInputs = (): ValidationResult => {

@@ -23,11 +23,12 @@ const SurveyForm = (props: {
 
   const setSurveyByKey = (key: keyof Survey, value: Survey[keyof Survey]) => {
     if (key === 'validUntil' && typeof value === 'string' && new Date(value) < new Date()) {
-      return toast({
+      toast({
         title: '현재보다 이전 날짜는 입력할 수 없습니다.',
         status: 'error',
         isClosable: true
       })
+      return
     }
     setSurvey({ ...survey, [key]: value })
   }
@@ -67,15 +68,17 @@ const SurveyForm = (props: {
           <RoundInput
             value={ survey.title }
             setValue={ (value) => setSurveyByKey('title', value?.toString()) }
-            placeholder={ '설문 제목을 입력해 주세요. (ex. 트래피커의 설문)' }
+            placeholder={ 'ex. 트래피커의 설문' }
           />
         </div>
         <div className={ styles.input_group }>
-          <p>내용</p>
+          <p>내용 (응답하는 분들을 위한 메시지)</p>
           <RoundInput 
+            className={ styles.textarea }
             value={ survey.content }
             setValue={ (value) => setSurveyByKey('content', value?.toString()) }
-            placeholder={ '설문을 응답하는 분들을 위한 메시지를 입력해 주세요.' }
+            placeholder={ '설문을 시작하기 전에 확인하는 내용입니다.' }
+            isTextarea
           />
         </div>
         <div className={ styles.input_group }>
@@ -106,7 +109,7 @@ const SurveyForm = (props: {
             <RoundInput 
               value={ surveyItem.title }
               setValue={ (value) => setSurveyItemByKeyAndIndex(index, 'title', value?.toString()) }
-              placeholder={ 'ex. 업무로서의 길동이는 어떤 사람인가요?' }
+              placeholder={ 'ex. 업무로서의 저는 어떤 사람인가요?' }
             />
           </div>
           

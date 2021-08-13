@@ -11,21 +11,26 @@ import { getDefaultQuestion, QuestionType } from 'models/Question'
 import { ValidationResult } from 'utils/validate'
 import { useToast } from '@chakra-ui/react'
 import { requestCreateSurvey } from 'utils/api/survey'
+import { copyToClipboard } from 'utils/clipboard'
 
 const DEFAULT_SURVEY: Survey = { 
   ...getDefaultSurvey(),
+  content: '안녕하세요, 피드백에 참가해주셔서 정말 감사합니다! 저는 성장하고 발전하기 위해 이번 피드백을 시작했습니다. 어떤 피드백이라도 감사히 받아들일 마음의 준비가 되어 있으니, 저를 위해 솔직하게 응답해주시면 감사하겠습니다 :)',
   items: [ {
     ...getDefaultSurveyItem(),
     questions: [
       {
         ...getDefaultQuestion(),
-        type: QuestionType.GREEN
+        type: QuestionType.GREEN,
+        content: '계속 이어나갔으면 하는 점을 알려주세요.'
       }, {
         ...getDefaultQuestion(),
-        type: QuestionType.RED
+        type: QuestionType.RED,
+        content: '개선했으면 하는 점을 알려주세요.'
       }, {
         ...getDefaultQuestion(),
-        type: QuestionType.YELLOW
+        type: QuestionType.YELLOW,
+        content: '추가로 제안하고 싶은 점을 알려주세요.'
       }
     ]
   } ]
@@ -73,9 +78,10 @@ const SurveyCreateContainer = () => {
         : undefined
     })
     if (responseSurvey) {
+      copyToClipboard(window.location.origin + `/survey/${responseSurvey.code}/reply`)
       toast({
         status: 'success',
-        title: '서베이를 생성했습니다.',
+        title: '서베이 공유 링크가 클립보드에 복사되었습니다.',
         position: 'top',
         isClosable: true
       })
@@ -129,6 +135,10 @@ const SurveyCreateContainer = () => {
           survey={ targetSurvey }
           setSurvey={ setTargetSurvey }
         />
+        <p className={ styles.notice }>
+          ※ 각 항목당 3개 이상의 응답이 있어야 공개됩니다.<br/>
+          ※ 설문 결과는 마감일 이후에 확인하실 수 있습니다.
+        </p>
       </div>
     </SurveyLayout>
   )
