@@ -8,11 +8,26 @@
   background-color: #ffffff;
 }
 
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
 .title {
-  margin-bottom: 12px;
   font-size: 14px;
   font-weight: 600;
   color: #363b55;
+}
+
+.button {
+  padding: 5px 13px;
+  font-size: 10px;
+  color: #ffffff;
+  border-radius: 25px;
+  border: solid 1px #979797;
+  background-color: #8564e4;
 }
 
 .info_row {

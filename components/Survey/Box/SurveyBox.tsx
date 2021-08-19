@@ -40,11 +40,27 @@ const SurveyBox = (props: {
     return styles.green
   }, [ survey ])
 
+  const buttonText = useMemo(() => {
+    if (!survey.validUntil) {
+      return '오류'
+    }
+    if (new Date() < new Date(survey.validUntil)) {
+      return '링크복사'
+    }
+    return '답변보기'
+  }, [ survey ])
+
   return (
     <div className={ `${styles.SurveyBox} ${className}` }>
-      <h3 className={ styles.title }>
-        {survey.title}
-      </h3>
+      <div className={ styles.meta }>
+        <h3 className={ styles.title }>
+          {survey.title}
+        </h3>
+
+        <button className={ styles.button }>
+          {buttonText}
+        </button>
+      </div>
 
       <div className={ styles.info_row }>
         <p className={ `${styles.status} ${surveyStatusColor}` }>

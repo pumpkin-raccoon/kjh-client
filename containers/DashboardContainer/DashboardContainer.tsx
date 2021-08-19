@@ -1,10 +1,7 @@
 import { Survey } from 'models/Survey'
 import { User } from 'models/User'
 import { DEFAULT_PROFILE_PATH } from 'reference/profile'
-import { requestUserSurveys } from 'utils/api/survey'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-import { currentUserState } from 'states/currentUser'
 import styles from './DashboardContainer.module.scss'
 import DashboardMySurvey from './MySurvey/DashboardMySurvey'
 import { useRouter } from 'next/dist/client/router'
@@ -13,33 +10,22 @@ type DashboardTab = 'mySurvey' | 'myResponse'
 
 const DashboardContainer = (props: {
   targetSurveyId?: string
+  surveys: Survey[]
+  currentUser: User
 }) => {
   const router = useRouter()
   const {
-    targetSurveyId
+    targetSurveyId,
+    surveys,
+    currentUser
   } = props
   const [ currentTab, setCurrentTab ] = useState<DashboardTab>(targetSurveyId ? 'myResponse' : 'mySurvey')
-  const currentUser = useRecoilValue<User>(currentUserState)
-  const [ userSurveys, setUserSurveys ] = useState<Survey[]>([])
-
-  useEffect(() => {
-    if (currentUser.id) {
-      setUserSurveysByApi()
-    }
-  }, [ currentUser ])
 
   useEffect(() => {
     if (targetSurveyId) {
       setCurrentTab('myResponse')
     }
   }, [ targetSurveyId ])
-
-  const setUserSurveysByApi = async() => {
-    const responseSurveys = await requestUserSurveys(currentUser.id)
-    if (responseSurveys) {
-      setUserSurveys(responseSurveys)
-    }
-  }
 
   const onClickTab = (tab: DashboardTab) => {
     if (tab === 'mySurvey') {
@@ -89,7 +75,7 @@ const DashboardContainer = (props: {
 
       <div className={ styles.contents }>
         {currentTab === 'mySurvey'
-          ? <DashboardMySurvey mySurveys={ userSurveys }/>
+          ? <DashboardMySurvey mySurveys={ surveys }/>
           : <div></div>
         }
       </div>
