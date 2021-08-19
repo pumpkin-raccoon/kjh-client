@@ -2,8 +2,37 @@
 
 exports[`HomeContainer matches snapshot 1`] = `
 <div>
-  <div
-    class="container"
-  />
+  <div>
+    <div
+      class="HomeContainerHeader"
+    >
+      <div
+        class="text"
+      >
+        <h2
+          class="title"
+        >
+          피드백을 통해
+          <br />
+          성장해 보세요.
+        </h2>
+        <p
+          class="description"
+        >
+          솔직한 피드백을 통해 방향성을 확인해 보세요.
+        </p>
+      </div>
+      <button
+        class="button"
+      >
+        지금 시작하기
+      </button>
+      <img
+        alt="traffic light icon"
+        class="traffic_image"
+        src="/images/home/traffic.png"
+      />
+    </div>
+  </div>
 </div>
 `;
