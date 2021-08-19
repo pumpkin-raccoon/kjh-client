@@ -16,7 +16,28 @@
 }
 
 .info_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.status {
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 500;
+
+  &.red {
+    background-color: rgb(209, 89, 89);
+  }
+
+  &.purple {
+    background-color: #c8bff4;
+  }
+
+  &.green {
+    background-color: rgb(161, 192, 161);
+  }
 }
 
 .item_length {

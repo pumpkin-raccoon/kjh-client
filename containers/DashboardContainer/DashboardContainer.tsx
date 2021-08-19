@@ -7,11 +7,18 @@ import { useRecoilValue } from 'recoil'
 import { currentUserState } from 'states/currentUser'
 import styles from './DashboardContainer.module.scss'
 import DashboardMySurvey from './MySurvey/DashboardMySurvey'
+import { useRouter } from 'next/dist/client/router'
 
 type DashboardTab = 'mySurvey' | 'myResponse'
 
-const DashboardContainer = () => {
-  const [ currentTab, setCurrentTab ] = useState<DashboardTab>('mySurvey')
+const DashboardContainer = (props: {
+  targetSurveyId?: string
+}) => {
+  const router = useRouter()
+  const {
+    targetSurveyId
+  } = props
+  const [ currentTab, setCurrentTab ] = useState<DashboardTab>(targetSurveyId ? 'myResponse' : 'mySurvey')
   const currentUser = useRecoilValue<User>(currentUserState)
   const [ userSurveys, setUserSurveys ] = useState<Survey[]>([])
 
@@ -19,13 +26,28 @@ const DashboardContainer = () => {
     if (currentUser.id) {
       setUserSurveysByApi()
     }
-  }, [ currentUser.id ])
+  }, [ currentUser ])
+
+  useEffect(() => {
+    if (targetSurveyId) {
+      setCurrentTab('myResponse')
+    }
+  }, [ targetSurveyId ])
 
   const setUserSurveysByApi = async() => {
     const responseSurveys = await requestUserSurveys(currentUser.id)
     if (responseSurveys) {
       setUserSurveys(responseSurveys)
     }
+  }
+
+  const onClickTab = (tab: DashboardTab) => {
+    if (tab === 'mySurvey') {
+      router.push({
+        pathname: '/dashboard'
+      })
+    }
+    setCurrentTab(tab)
   }
 
   return (
@@ -49,7 +71,7 @@ const DashboardContainer = () => {
       <ul className={ styles.tabs }>
         <li>
           <button 
-            onClick={ () => setCurrentTab('mySurvey') }
+            onClick={ () => onClickTab('mySurvey') }
             className={ currentTab === 'mySurvey' ? styles.selected : '' }
           >
             내 설문
@@ -57,7 +79,7 @@ const DashboardContainer = () => {
         </li>
         <li>
           <button
-            onClick={ () => setCurrentTab('myResponse') }
+            onClick={ () => onClickTab('myResponse') }
             className={ currentTab === 'myResponse' ? styles.selected : '' }
           >
             내 답변

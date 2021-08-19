@@ -9,12 +9,12 @@
 .contents {
   width: 100%;
 
-  button {
+  li {
     width: 100%;
     text-align: initial;
   }
 
-  button + button {
+  li + li {
     margin-top: 20px;
   }
 }
