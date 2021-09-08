@@ -1,5 +1,6 @@
 import { Survey, SurveyPayload } from 'models/Survey'
 import { SurveyItemTemplate } from 'models/SurveyItem'
+import { User } from 'models/User'
 import { requestApi } from '.'
 
 export const requestSurveyTemplates = async(): Promise<SurveyItemTemplate[] | undefined> => {
@@ -37,6 +38,16 @@ export const requestSurveyByCode = async(code: string, token?: string | object):
       accessTokenOrCtx: token
     }
   })
-  console.log('response : ', `/guest/surveys/${code}`)
+  return response?.data || undefined
+}
+
+export const requestSurveyOwnerByCode = async(code: string, token?: string | object): Promise<User | undefined> => {
+  const response = await requestApi({
+    method: 'get',
+    backUrl: `/guest/surveys/${code}/publicOwnerData`,
+    options: {
+      accessTokenOrCtx: token
+    }
+  })
   return response?.data || undefined
 }

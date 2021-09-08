@@ -4,7 +4,7 @@ import { COOKIE_NAME, getCookie } from '../cookie'
 import nextCookie from 'next-cookies'
 
 export const requestApi = async (params: {
-  method: 'post' | 'put' | 'delete' | 'get'
+  method: 'post' | 'put' | 'delete' | 'get' | 'patch'
   backUrl: string
   options?: {
     data?: any

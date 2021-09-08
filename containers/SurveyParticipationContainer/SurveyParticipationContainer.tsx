@@ -5,17 +5,20 @@ import SurveyParticipationContainerIntroduction from './Introduction/SurveyParti
 import styles from './SurveyParticipationContainer.module.scss'
 import SurveyParticipationContainerReply from './Reply/SurveyParticipationContainerReply'
 import SurveyParticipationContainerComplete from './Complete/SurveyParticipationContainerComplete'
+import { Reply } from 'models/Reply'
 
 type SurveyParticipationStep = 'Introduction' | 'Participation' | 'Completion'
 
 const SurveyParticipationContainer = (props: {
   user: User
   survey: Survey
+  reply: Reply
 }) => {
   const [ step, setStep ] = useState<SurveyParticipationStep>('Introduction')
   const {
     user,
-    survey
+    survey,
+    reply
   } = props
 
   const moveToNextStep = () => {
@@ -38,7 +41,9 @@ const SurveyParticipationContainer = (props: {
         }
         {step === 'Participation' &&
           <SurveyParticipationContainerReply 
+            survey={ survey }
             moveToNextStep={ moveToNextStep }
+            reply={ reply }
           />
         }
         {step === 'Completion' &&

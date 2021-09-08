@@ -8,6 +8,8 @@ const SurveyParticipationContainerComplete = () => {
     <div className={ styles.SurveyParticipationContainerComplete }>
       <img 
         className={ styles.image }
+        alt='letter'
+        src="/images/survey/letter.png"
       />
       <h2 className={ styles.title }>
         설문 완료!

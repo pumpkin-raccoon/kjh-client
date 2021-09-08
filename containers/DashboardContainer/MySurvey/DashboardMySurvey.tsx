@@ -44,10 +44,8 @@ const DashboardMySurvey = (props: {
   }
 
   const routeToSurveyCreatePage = () => {
-    const waitingSurveys = mySurveys.map((survey) => {
-      if (survey.validUntil && (new Date() < new Date(survey.validUntil))) {
-        return survey
-      }
+    const waitingSurveys = mySurveys.filter((survey) => {
+      return survey.validUntil && (new Date() < new Date(survey.validUntil))
     })
     const maximumWaitingCount = 2
     if (waitingSurveys.length >= maximumWaitingCount) {
