@@ -4,11 +4,11 @@ import { NextPageContext } from 'next'
 import SurveyParticipationContainer from 'containers/SurveyParticipationContainer/SurveyParticipationContainer'
 import { useSetRecoilState } from 'recoil'
 import { currentUserState } from 'states/currentUser'
-import { useToast } from '@chakra-ui/react'
 import { requestCurrentUser } from 'utils/api/auth'
 import { requestSurveyByCode, requestSurveyOwnerByCode } from 'utils/api/survey'
 import { requestCreateReply } from 'utils/api/reply'
 import { Reply } from 'models/Reply'
+import Error from 'components/Error/Error'
 
 const SurveyParticipationPage = (props: {
   user: User | null
@@ -23,21 +23,17 @@ const SurveyParticipationPage = (props: {
     reply
   } = props
   console.log('props : ', props)
-  const toast = useToast()
   const setUser = useSetRecoilState(currentUserState)
   if (user) {
     setUser(user)
   }
 
-  // TODO: add duplication check
-  
   if (!survey || !surveyOwner || !reply) {
-    toast({
-      status: 'error',
-      title: '잘못된 설문 코드입니다.',
-      isClosable: true
-    })
-    return <></>
+    return <Error message="잘못된 설문 코드입니다."/>
+  }
+  
+  if (!survey.validUntil || new Date() > new Date(survey.validUntil)) {
+    return <Error message="응답 기간이 지난 설문입니다."/>
   }
 
   return (

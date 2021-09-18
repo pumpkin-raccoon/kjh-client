@@ -1,0 +1,47 @@
+.Dropdown {
+  position: relative;
+}
+
+.trigger {
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 20px 13px 17px;
+    font-size: 15px;
+    color: #69666d;
+    border: solid 1px #f3f7f9;
+    background-color: #f3f7f9;
+    outline: none;
+    cursor: pointer;
+  }
+}
+
+.content {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 100%;
+}
+
+.box {
+  width: 100%;
+  padding: 3px;
+  border: solid 1px #dde0ea;
+  border-radius: 3px;
+  background-color: #f3f7f9;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.12);
+}
+
+.item {
+  width: 100%;
+  text-align: left;
+  font-size: 15px;
+  padding: 8px 5px;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: #dde0ea;
+  }
+}

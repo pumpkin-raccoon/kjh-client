@@ -84,16 +84,20 @@ const SurveyForm = (props: {
         <div className={ styles.input_group }>
           <p>마감일</p>
           <DatePicker
+            showTimeSelect
             className={ styles.date_picker }
             showYearDropdown
             isClearable
-            dateFormat="yyyy.MM.dd"
+            dateFormat="yyyy.MM.dd h:mm a"
             selected={ survey.validUntil
               ? new Date(survey.validUntil) 
               : undefined
             }
-            onChange={ (date) => {
-              setSurveyByKey('validUntil', date?.toString() || undefined)
+            onChange={ (date: Date) => {
+              const targetDate = date
+                ? new Date(date)?.toISOString()
+                : undefined
+              setSurveyByKey('validUntil', targetDate)
             } }
           />
         </div>

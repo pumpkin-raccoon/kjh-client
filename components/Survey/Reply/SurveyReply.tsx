@@ -3,6 +3,7 @@ import { Question } from 'models/Question'
 import { ItemReply } from 'models/Reply'
 import { SurveyItem } from 'models/SurveyItem'
 import { SetStateAction } from 'react'
+import { getLabelTextByQuestionType } from 'utils/question'
 import styles from './SurveyReply.module.scss'
 
 const SurveyReply = (props: {
@@ -32,6 +33,7 @@ const SurveyReply = (props: {
       <div>
         {surveyItem.questions.map((question: Question, index: number) => (
           <RoundInput 
+            isTextarea={ true }
             key={ question.id }
             className={ styles.input }
             value={ surveyItemReply.questionReplies[index].content }
@@ -39,7 +41,7 @@ const SurveyReply = (props: {
               updateQuestionContent(index, value?.toString())
             } }
             placeholder={ question.content }
-            labelText={ question.content }
+            labelText={ `(${getLabelTextByQuestionType(question.type)}) ${question.content}` }
           />
         ))}
       </div>

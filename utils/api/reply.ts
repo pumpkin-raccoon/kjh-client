@@ -21,3 +21,11 @@ export const requestUpdateReply = async(replyId: string, itemReplies: ItemReply[
   })
   return response?.data || undefined
 }
+
+export const requestRepliesOfSurvey = async(surveyId: string) => {
+  const response = await requestApi({
+    method: 'get',
+    backUrl: `/surveys/${surveyId}/replies`
+  })
+  return response?.data || undefined
+}

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import styles from './DashboardContainer.module.scss'
 import DashboardMySurvey from './MySurvey/DashboardMySurvey'
 import { useRouter } from 'next/dist/client/router'
+import DashboardContainerResponse from './Response/DashboardContainerResponse'
 
 type DashboardTab = 'mySurvey' | 'myResponse'
 
@@ -75,8 +76,15 @@ const DashboardContainer = (props: {
 
       <div className={ styles.contents }>
         {currentTab === 'mySurvey'
-          ? <DashboardMySurvey mySurveys={ surveys }/>
-          : <div></div>
+          ? 
+          <DashboardMySurvey 
+            mySurveys={ surveys }
+          />
+          : 
+          <DashboardContainerResponse 
+            mySurveys={ surveys }
+            targetSurveyId={ targetSurveyId }
+          />
         }
       </div>
     </div>

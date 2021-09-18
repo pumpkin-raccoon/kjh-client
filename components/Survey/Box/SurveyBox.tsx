@@ -12,22 +12,14 @@ const SurveyBox = (props: {
     survey
   } = props
 
-  const questionCount: number = useMemo(() => {
-    let count = 0
-    survey.items.forEach((surveyItem) => {
-      count += surveyItem.questions.length
-    })
-    return count
-  }, [ survey ])
-
   const surveyStatus = useMemo(() => {
     if (!survey.validUntil) {
       return '오류'
     }
     if (new Date() < new Date(survey.validUntil)) {
-      return `${format(new Date(survey.validUntil), 'M/dd')} 이후 공개`
+      return `${format(new Date(survey.validUntil), 'M/dd h:mm a')} 이후 공개`
     }
-    return '완료'
+    return '설문 완료'
   }, [ survey ])
 
   const surveyStatusColor = useMemo(() => {
@@ -40,35 +32,44 @@ const SurveyBox = (props: {
     return styles.green
   }, [ survey ])
 
-  const buttonText = useMemo(() => {
+  const buttonProperty = useMemo(() => {
     if (!survey.validUntil) {
-      return '오류'
+      return {
+        text: '오류',
+        className: styles.error
+      }
     }
     if (new Date() < new Date(survey.validUntil)) {
-      return '링크복사'
+      return {
+        text: '링크복사',
+        className: styles.copy_link
+      }
     }
-    return '답변보기'
+    return {
+      text: '답변보기',
+      className: styles.see_reply
+    }
   }, [ survey ])
 
   return (
     <div className={ `${styles.SurveyBox} ${className}` }>
       <div className={ styles.meta }>
         <h3 className={ styles.title }>
-          {survey.title}
+          {survey.title.length > 25
+            ? survey.title.slice(0, 25) + '...'
+            : survey.title
+          }
         </h3>
 
-        <button className={ styles.button }>
-          {buttonText}
-        </button>
-      </div>
-
-      <div className={ styles.info_row }>
         <p className={ `${styles.status} ${surveyStatusColor}` }>
           {surveyStatus}
         </p>
-        <p className={ styles.item_length }>
-          총 {questionCount}문항
-        </p>
+      </div>
+
+      <div className={ styles.info_row }>
+        <button className={ `${styles.button} ${buttonProperty.className}` }>
+          {buttonProperty.text}
+        </button>
       </div>
     </div>
   )

@@ -136,7 +136,6 @@ const SurveyCreateContainer = () => {
           setSurvey={ setTargetSurvey }
         />
         <p className={ styles.notice }>
-          ※ 각 항목당 2개 이상의 응답이 있어야 공개됩니다.<br/>
           ※ 설문 결과는 마감일 이후에 확인하실 수 있습니다.
         </p>
       </div>
