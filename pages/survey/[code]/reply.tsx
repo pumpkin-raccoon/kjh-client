@@ -22,7 +22,6 @@ const SurveyParticipationPage = (props: {
     surveyOwner,
     reply
   } = props
-  console.log('props : ', props)
   const setUser = useSetRecoilState(currentUserState)
   if (user) {
     setUser(user)

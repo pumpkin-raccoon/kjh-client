@@ -32,7 +32,6 @@ const SurveyParticipationContainerReply = (props: {
 
   const submitReply = async () => {
     const response = await requestUpdateReply(reply.id, [ surveyItemReply ])
-    console.log('update reply : ', response)
     if (response) {
       moveToNextStep()
     } else {

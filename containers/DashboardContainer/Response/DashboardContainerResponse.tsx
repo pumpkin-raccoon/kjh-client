@@ -27,15 +27,12 @@ const DashboardContainerResponse = ({
   const router = useRouter()
 
   const updateSurveyAndReplies = async () => {
-    console.log('targetSurveyId: ', targetSurveyId)
     if (mySurveys.length === 0) {
       return
     }
-    // find survey by id
     const currentSurvey = targetSurveyId
       ? mySurveys.find((survey) => survey.id === targetSurveyId)
       : mySurveys[0]
-    console.log('mySurveys: ', mySurveys)
     if (!currentSurvey) {
       toast({
         status: 'error',
@@ -46,13 +43,11 @@ const DashboardContainerResponse = ({
       return
     }
     setTargetSurvey(currentSurvey)
-    // update reply data
     await updateTargetReplies(currentSurvey.id)
   }
 
   const updateTargetReplies = async (surveyId: string) => {
     const replies = await requestRepliesOfSurvey(surveyId)
-    console.log('replies : ', replies)
     if (!replies) {
       toast({
         status: 'error',
@@ -74,7 +69,6 @@ const DashboardContainerResponse = ({
         targetQuestionReplies = targetQuestionReplies.concat(itemReply.questionReplies)
       })
     })
-    console.log('target replies : ', targetQuestionReplies)
     return targetQuestionReplies
   }, [ targetReplies ])
 

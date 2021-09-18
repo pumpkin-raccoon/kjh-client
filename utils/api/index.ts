@@ -23,8 +23,6 @@ export const requestApi = async (params: {
     case 'object':
       accessToken = nextCookie(options?.accessTokenOrCtx)[COOKIE_NAME.token]
   }
-  console.log('target url : ', (process.env.apiServer || API.SERVER) + backUrl)
-  console.log('access token : ', accessToken)
   try {
     return await axios({
       method: method,
