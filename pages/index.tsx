@@ -1,78 +1,22 @@
+import Head from 'next/head'
 import Layout from '../components/Layout/Layout'
 import HomeContainer from '../containers/HomeContainer/HomeContainer'
 
 const HomePage = () => {
+  const title = '트래피커 | 성장을 위한 피드백 서비스'
+  const description = '솔직한 피드백을 통해 방향성을 확인해 보세요. 마감 이후에 확인할 수 있는 익명성과 피드백에 초점을 맞춘 서비스!'
+
   return (
     <Layout>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={ title }/>
+        <meta name="description" content={ description }/>
+        <meta property="og:description" content={ description }/>
+      </Head>
       <HomeContainer />
     </Layout>
   )
 }
 
 export default HomePage
-
-// import Head from 'next/head'
-// import styles from '../styles/Home.module.css'
-
-// export default function Home() {
-//   return (
-//     <div className={styles.container}>
-//       <Head>
-//         <title>Create Next App</title>
-//         <link rel="icon" href="/favicon.ico" />
-//       </Head>
-
-//       <main className={styles.main}>
-//         <h1 className={styles.title}>
-//           Welcome to <a href="https://nextjs.org">Next.js!</a>
-//         </h1>
-
-//         <p className={styles.description}>
-//           Get started by editing{' '}
-//           <code className={styles.code}>pages/index.js</code>
-//         </p>
-
-//         <div className={styles.grid}>
-//           <a href="https://nextjs.org/docs" className={styles.card}>
-//             <h3>Documentation &rarr;</h3>
-//             <p>Find in-depth information about Next.js features and API.</p>
-//           </a>
-
-//           <a href="https://nextjs.org/learn" className={styles.card}>
-//             <h3>Learn &rarr;</h3>
-//             <p>Learn about Next.js in an interactive course with quizzes!</p>
-//           </a>
-
-//           <a
-//             href="https://github.com/vercel/next.js/tree/master/examples"
-//             className={styles.card}
-//           >
-//             <h3>Examples &rarr;</h3>
-//             <p>Discover and deploy boilerplate example Next.js projects.</p>
-//           </a>
-
-//           <a
-//             href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-//             className={styles.card}
-//           >
-//             <h3>Deploy &rarr;</h3>
-//             <p>
-//               Instantly deploy your Next.js site to a public URL with Vercel.
-//             </p>
-//           </a>
-//         </div>
-//       </main>
-
-//       <footer className={styles.footer}>
-//         <a
-//           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Powered by{' '}
-//           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-//         </a>
-//       </footer>
-//     </div>
-//   )
-// }

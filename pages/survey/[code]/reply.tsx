@@ -9,6 +9,7 @@ import { requestSurveyByCode, requestSurveyOwnerByCode } from 'utils/api/survey'
 import { requestCreateReply } from 'utils/api/reply'
 import { Reply } from 'models/Reply'
 import Error from 'components/Error/Error'
+import Head from 'next/head'
 
 const SurveyParticipationPage = (props: {
   user: User | null
@@ -35,12 +36,23 @@ const SurveyParticipationPage = (props: {
     return <Error message="응답 기간이 지난 설문입니다."/>
   }
 
+  const title = `${surveyOwner.name}의 설문 | 트래피커`
+  const description = `${surveyOwner.name}의 설문입니다! ${survey.content}`
+
   return (
-    <SurveyParticipationContainer
-      user={ surveyOwner }
-      survey={ survey }
-      reply={ reply }
-    />
+    <>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={ title }/>
+        <meta name="description" content={ description }/>
+        <meta property="og:description" content={ description }/>
+      </Head>
+      <SurveyParticipationContainer
+        user={ surveyOwner }
+        survey={ survey }
+        reply={ reply }
+      />
+    </>
   )
 }
 
